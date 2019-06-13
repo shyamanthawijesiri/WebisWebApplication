@@ -1,0 +1,9 @@
+#nav-bar{
+  background-color: aqua;
+  color: white;
+}
+
+li{
+  margin-right: 50px;
+  color: white;
+}
