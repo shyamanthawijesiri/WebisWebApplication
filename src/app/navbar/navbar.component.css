@@ -1,9 +1,11 @@
 #nav-bar{
-  background-color: aqua;
+  background-color:white;
   color: white;
+
 }
 
 li{
-  margin-right: 50px;
+
+  margin-left: 60px;
   color: white;
 }
