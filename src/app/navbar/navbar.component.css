@@ -9,3 +9,24 @@ li{
   margin-left: 60px;
   color: white;
 }
+
+.dropdown:hover .dropdown-menu{
+  display: block;
+}
+
+
+.mega-menu{
+
+  border-radius: 10px;
+  width: 800px;
+  overflow: hidden;
+  padding: 10px;
+}
+
+.mega-menu p a{
+  text-decoration: none;
+
+}
+.mega-menu p a:hover{
+ background-color: rgb(150, 184, 235);
+}
