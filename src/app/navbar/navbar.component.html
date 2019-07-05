@@ -18,24 +18,11 @@
               <div class="col-md-3">
                 <img src="https://www.workforce.com/wp-content/uploads/sites/2/2018/12/AI-is-coming-%E2%80%94-and-HR-is-not-prepared.jpg" width="100" height="100">
               </div>
-              <div class="col-md-3">
-                <p><a routerLink="#">Category 1</a></p>
-                <p><a routerLink="#">Category 1</a></p>
-                <p><a routerLink="#">Category 1</a></p>
-                <p><a routerLink="#">Category 1</a></p>
+              <div class="col-md-3" *ngFor="let course of loadedCourses">
+                <!-- <p><a routerLink="/displaycourses">Category 1</a></p> -->
+                <a [routerLink]="['/displaycourses', course.id]">{{course.name}}</a>
               </div>
-              <div class="col-md-3">
-                  <p><a>Category 1</a></p>
-                  <p><a>Category 1</a></p>
-                  <p><a>Category 1</a></p>
-                  <p><a>Category 1</a></p>
-              </div>
-              <div class="col-md-3">
-                  <p><a>Category 1</a></p>
-                  <p><a>Category 1</a></p>
-                  <p><a>Category 1</a></p>
-                  <p><a>Category 1</a></p>
-              </div>
+
 
 
             </div>

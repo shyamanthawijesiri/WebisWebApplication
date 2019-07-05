@@ -8,7 +8,9 @@ import { AddcourseComponent } from './contentprovider/addcourse/addcourse.compon
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
   {path: 'home', component: HomeComponent},
-  {path: 'displaycourses', component: DisplaycoursesComponent},
+  {path: 'home/:id', component: HomeComponent},
+  {path: 'displaycourses/:id', component: DisplaycoursesComponent},
+  {path: 'displaycourses ', component: DisplaycoursesComponent},
   {path: 'contentprovider', component: ContentproviderComponent},
   {path: 'addcourse', component:AddcourseComponent}
 ];

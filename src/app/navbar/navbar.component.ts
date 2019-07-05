@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Course } from '../course.model';
+import { CourseService } from '../services/course.service';
 
 @Component({
   selector: 'app-navbar',
@@ -6,11 +8,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  courses = [1, 2, 3, 4, 5];
-  coursessub =[10, 9, 8, 7, 6];
-  constructor() { }
+  loadedCourses: Course[];
+  constructor(private courseService: CourseService) { }
 
   ngOnInit() {
+    console.log("navbar")
+    this.loadedCourses = this.courseService.courses;
   }
 
 }
