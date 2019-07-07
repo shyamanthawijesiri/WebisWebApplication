@@ -4,11 +4,50 @@
 
 
     {{ course1.id }}
+    {{course2.id}}
 
 
   </div>
 
   <div class="col-10">
+   
+    <div class="row">
+        <div class="col-md-1" *ngFor="let subcourse of loadedSubCourses | maincategories: course1.id">
+          
+            <a [routerLink]="['/displaycourses',course1.id,subcourse.sid]">{{subcourse.name}}</a>
+          </div>
+    </div>
+  
+        <div class="row card-group " *ngIf="course2.id==empty" >
+            <div class="col-4"  *ngFor="let course of loadedSubCourses | maincategories: course1.id"  >
+              <div class="card" style="width: 18rem; margin-bottom: 100px; ">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">{{course.name}}</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+
+                </div>
+              </div>
+            </div>
+            
+            
+          </div>
+          <div class="row card-group " *ngIf="course2.id!=empty" >
+            <div class="col-4"  *ngFor="let course of loadedSubCourses | subcateroies: course1.id : course2.id"  >
+              <div class="card" style="width: 18rem; margin-bottom: 100px; ">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">{{course.name}}</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+
+                </div>
+              </div>
+            </div>
+            
+            
+          </div>
+  
+      
 
       <!-- <nav>
           <div class="nav nav-tabs" id="nav-tab" role="tablist">
@@ -19,7 +58,7 @@
             <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">springboot</a>
             <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">kotline</a>
           </div>
-        </nav> -->
+        </nav>
 
         <div class="tab-content" id="nav-tabContent">
           <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
@@ -54,8 +93,8 @@
           </div>
           <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">...</div>
         </div>
-  </div>
+  </div> -->
 
-
+</div>
 </div>
 

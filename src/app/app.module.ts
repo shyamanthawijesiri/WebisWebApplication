@@ -13,6 +13,7 @@ import { AddcourseComponent } from './contentprovider/addcourse/addcourse.compon
 import { SubcateroiesPipe } from './pipes/subcateroies.pipe';
 import { MycoursesComponent } from './user/mycourses/mycourses.component';
 import { AccountComponent } from './user/account/account.component';
+import { MaincategoriesPipe } from './pipes/maincategories.pipe';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { AccountComponent } from './user/account/account.component';
     AddcourseComponent,
     SubcateroiesPipe,
     MycoursesComponent,
-    AccountComponent
+    AccountComponent,
+    MaincategoriesPipe
   ],
   imports: [
     BrowserModule,

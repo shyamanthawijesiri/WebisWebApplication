@@ -5,11 +5,11 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class SubcateroiesPipe implements PipeTransform {
 
-  transform(value: any, id: number): any {
+  transform(value: any, mid: string, sid: string): any {
     const arr = [];
     for(const item of value) {
 
-      if(item === id) {
+      if(item.mid === mid && item.sid==sid) {
         arr.push(item)
       }
 
