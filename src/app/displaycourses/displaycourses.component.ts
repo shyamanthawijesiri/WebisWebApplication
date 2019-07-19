@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Subcourses } from '../subcourse.model';
 import { SubcourseService } from '../services/subcourse.service';
 import { CourseService } from '../services/course.service';
 import { Course } from '../course.model';
+import { EventEmitter } from 'events';
 
 
 @Component({
@@ -12,40 +13,45 @@ import { Course } from '../course.model';
   styleUrls: ['./displaycourses.component.css']
 })
 export class DisplaycoursesComponent implements OnInit {
-  loadedSubCourses: Subcourses[];
-  loadedCourses: Course[];
-   course1: {id: string };
-   course2: { id: string}
-   
-  //  maincourses = ['node', 'js','angular','phython','springboot','jsp'];
-  // courses = ['c1', 'c2', 'c3' , 'c4', 'c5' ]
+  loadedSubCourses:any // Subcourses[];
+  mainCourse: { id: string }
 
-  constructor(private route: ActivatedRoute, private subCourseService: SubcourseService, private coursesService: CourseService ) { }
+
+  constructor(private activatedRoute: ActivatedRoute, private subCourseService: SubcourseService, private coursesService: CourseService ) { }
 
   ngOnInit() {
-    this.loadedSubCourses = this.subCourseService.subcourses;
-    this.loadedCourses = this.coursesService.courses;
-    this.course1 = {
-      id: this.route.snapshot.params['mid']
+
+     //this.loadedSubCourses = this.subCourseService.subcourses;
+     //this.loadedCourses = this.coursesService.courses;
+
+    // this.loadedCourses = this.coursesService.getCourses().subscribe(response => {
+    //   this.loadedCourses=response;
+    //   console.log(response);
+
+    // });
+
+    this.mainCourse = {
+      id: this.activatedRoute.snapshot.paramMap.get('catergory')
     };
-    
-    this.course2 = {
-      id: this.route.snapshot.params['sid']
-    };
-    
-    
-    this.route.params.subscribe(
+    this.activatedRoute.params.subscribe(
       (params: Params) => {
-        this.course1.id = params['mid'];
+        this.mainCourse.id = params['catergory'];
       }
     )
-    this.route.params.subscribe(
-      (params: Params) => {
-        this.course2.id = params['sid'];
-      }
-    )
-    
+    console.log(this.mainCourse.id);
+
+    this.subCourseService. getSubcourses(this.mainCourse.id).subscribe(response => {
+      this.loadedSubCourses=response;
+
+
+    });
+
+
 
   }
 
+
+
+
 }
+

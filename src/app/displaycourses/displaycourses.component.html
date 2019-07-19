@@ -1,24 +1,21 @@
 <div class="row" style="margin-top: 57px;">
   <div class="col-2">
     <h2 class='text-center'>Filter</h2>
-
-
-    {{ course1.id }}
-    {{course2.id}}
+    {{mainCourse.id}}
 
 
   </div>
 
   <div class="col-10">
-   
+
     <div class="row">
-        <div class="col-md-1" *ngFor="let subcourse of loadedSubCourses | maincategories: course1.id">
-          
-            <a [routerLink]="['/displaycourses',course1.id,subcourse.sid]">{{subcourse.name}}</a>
+        <div class="col-md-1" *ngFor="let subcourse of loadedSubCourses ">
+
+            <a [routerLink]="['/displaycourses',mainCourse.id,subcourse.name]">{{subcourse.name}}</a>
           </div>
     </div>
-  
-        <div class="row card-group " *ngIf="course2.id==empty" >
+
+        <!-- div class="row card-group " *ngIf="course2.id==empty" >
             <div class="col-4"  *ngFor="let course of loadedSubCourses | maincategories: course1.id"  >
               <div class="card" style="width: 18rem; margin-bottom: 100px; ">
                 <img src="..." class="card-img-top" alt="...">
@@ -29,11 +26,12 @@
                 </div>
               </div>
             </div>
-            
-            
-          </div>
-          <div class="row card-group " *ngIf="course2.id!=empty" >
-            <div class="col-4"  *ngFor="let course of loadedSubCourses | subcateroies: course1.id : course2.id"  >
+
+
+          </div> -->
+          <!-- *ngIf="course2.id!=empty" -->
+          <!-- <div class="row card-group "  >
+            <div class="col-4"  *ngFor="let course of loadedSubCourses"  >
               <div class="card" style="width: 18rem; margin-bottom: 100px; ">
                 <img src="..." class="card-img-top" alt="...">
                 <div class="card-body">
@@ -43,11 +41,13 @@
                 </div>
               </div>
             </div>
-            
-            
-          </div>
-  
-      
+
+
+          </div> -->
+
+
+
+
 
       <!-- <nav>
           <div class="nav nav-tabs" id="nav-tab" role="tablist">

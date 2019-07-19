@@ -9,11 +9,11 @@ import { AccountComponent} from './user/account/account.component';
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
   {path: 'home', component: HomeComponent},
-  {path: 'home', component: HomeComponent},
 
-  {path: 'displaycourses/:mid', component: DisplaycoursesComponent},
-  {path: 'displaycourses/:mid/:sid', component: DisplaycoursesComponent},
   {path: 'displaycourses', component: DisplaycoursesComponent},
+  {path: 'displaycourses/:catergory', component: DisplaycoursesComponent},
+  {path: 'displaycourses/:catergory/:subCatergory', component: DisplaycoursesComponent},
+
   {path: 'contentprovider', component: ContentproviderComponent},
   {path: 'addcourse', component: AddcourseComponent},
   {path: 'account', component: AccountComponent}
