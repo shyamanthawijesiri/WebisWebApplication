@@ -38,15 +38,19 @@ export class DisplaycoursesComponent implements OnInit {
         this.mainCourse.id = params['catergory'];
       }
     )
-    console.log(this.mainCourse.id);
+    //console.log(this.mainCourse.id);
 
     this.subCourseService. getSubcourses(this.mainCourse.id).subscribe(response => {
       this.loadedSubCourses=response;
 
 
     });
-
-
+     
+    this.subCourseService.courseUpdate.subscribe(
+      (course: string)=>{
+      this.loadedSubCourses=course;
+      }
+    )
 
   }
 

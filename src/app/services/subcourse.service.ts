@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { Subcourses } from '../subcourse.model';
 import {HttpClient,HttpClientModule,HttpHeaders} from '@angular/common/http';
 
@@ -6,7 +6,7 @@ import {HttpClient,HttpClientModule,HttpHeaders} from '@angular/common/http';
   providedIn: 'root'
 })
 export class SubcourseService {
-
+ 
   constructor(private http:HttpClient) { }
 //   private _subcourse: Subcourses[] = [
 //     new Subcourses (
@@ -46,9 +46,8 @@ export class SubcourseService {
    return course;
 
  }
- sendId(){
 
- }
+ courseUpdate = new EventEmitter<string>( )
 
 
 

@@ -32,12 +32,13 @@ export class NavbarComponent implements OnInit {
 
 
   }
-   onSelect(){
-    this.subCourseService. getSubcourses("MobileDevelpopment").subscribe(response => {
+   onSelect(courseName: string){
+    this.subCourseService. getSubcourses(courseName).subscribe(response => {
       this.loadedSubCourses=response;
-
+      this.subCourseService.courseUpdate.emit(this.loadedSubCourses);
 
     });
+    console.log(courseName);
    }
   // clickSubCatergories(){
   //   this.loadedSubCourses = this.subCourseService. getSubcourses(this.course2.id).subscribe(response => {
