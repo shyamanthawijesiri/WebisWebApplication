@@ -14,6 +14,7 @@ import { EventEmitter } from 'events';
 })
 export class DisplaycoursesComponent implements OnInit {
   loadedSubCourses:any // Subcourses[];
+  loadedCourseVideo: any
   mainCourse: { id: string }
 
 
@@ -29,6 +30,7 @@ export class DisplaycoursesComponent implements OnInit {
     //   console.log(response);
 
     // });
+    // get activated route
 
     this.mainCourse = {
       id: this.activatedRoute.snapshot.paramMap.get('catergory')
@@ -38,17 +40,31 @@ export class DisplaycoursesComponent implements OnInit {
         this.mainCourse.id = params['catergory'];
       }
     )
-    //console.log(this.mainCourse.id);
-
+    
+      // display sub courses
     this.subCourseService. getSubcourses(this.mainCourse.id).subscribe(response => {
       this.loadedSubCourses=response;
 
-
+      console.log(response);
     });
+   
      
     this.subCourseService.courseUpdate.subscribe(
       (course: string)=>{
       this.loadedSubCourses=course;
+      }
+    );
+
+    //display videos
+
+    this.coursesService.getCourseVideos(this.mainCourse.id).subscribe(response =>{
+      this.loadedCourseVideo=response;
+      console.log(response);
+    });
+
+    this.coursesService.courseVideoUpdate.subscribe(
+      (courseVideos: string) => {
+        this.loadedCourseVideo=courseVideos;
       }
     )
 

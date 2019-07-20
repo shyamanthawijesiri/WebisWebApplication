@@ -12,6 +12,7 @@ import { SubcourseService } from '../services/subcourse.service';
 export class NavbarComponent implements OnInit {
   loadedCourses: any //Course[];
   loadedSubCourses: any
+  loadedCourseVideo: any
 
 
   constructor(private activatedRoute: ActivatedRoute, private courseService: CourseService, private subCourseService: SubcourseService) { }
@@ -37,8 +38,13 @@ export class NavbarComponent implements OnInit {
       this.loadedSubCourses=response;
       this.subCourseService.courseUpdate.emit(this.loadedSubCourses);
 
+
     });
     console.log(courseName);
+    this.courseService.getCourseVideos(courseName).subscribe(response =>{
+      this.loadedCourseVideo=response;
+      this.courseService.courseVideoUpdate.emit(this.loadedCourseVideo);
+    })
    }
   // clickSubCatergories(){
   //   this.loadedSubCourses = this.subCourseService. getSubcourses(this.course2.id).subscribe(response => {

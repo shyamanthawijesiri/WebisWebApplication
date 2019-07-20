@@ -43,11 +43,15 @@ getCourses(){
 
 }
 
-getId(id:string){
-  return id;
+getCourseVideos(catergory){
+  const course=this.http.get("http://localhost:3000/course/"+catergory);
+
+   console.log(course);
+   console.log("MMMMMMMMMMMMMMM")
+   return course;
 }
 
-
+courseVideoUpdate = new EventEmitter<string>( )
 
 
 
