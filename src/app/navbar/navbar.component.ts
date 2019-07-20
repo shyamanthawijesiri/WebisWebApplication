@@ -33,6 +33,7 @@ export class NavbarComponent implements OnInit {
 
 
   }
+  // subcatergory update
    onSelect(courseName: string){
     this.subCourseService. getSubcourses(courseName).subscribe(response => {
       this.loadedSubCourses=response;
@@ -40,6 +41,7 @@ export class NavbarComponent implements OnInit {
 
 
     });
+    // main catergory video update
     console.log(courseName);
     this.courseService.getCourseVideos(courseName).subscribe(response =>{
       this.loadedCourseVideo=response;

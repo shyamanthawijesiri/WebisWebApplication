@@ -2,6 +2,7 @@
   <div class="col-2">
     <h2 class='text-center'>Filter</h2>
     {{mainCourse.id}}
+    {{subCourse.id}}
 
 
   </div>
@@ -11,26 +12,11 @@
     <div class="row">
         <div class="col-md-1" *ngFor="let subcourse of loadedSubCourses ">
 
-            <a [routerLink]="['/displaycourses',mainCourse.id,subcourse.name]">{{subcourse.name}}</a>
+            <a [routerLink]="['/displaycourses',mainCourse.id,subcourse.name]" (click)="onSubCourse(mainCourse.id,subcourse.name)">{{subcourse.name}}</a>
           </div>
     </div>
 
-        <!-- div class="row card-group " *ngIf="course2.id==empty" >
-            <div class="col-4"  *ngFor="let course of loadedSubCourses | maincategories: course1.id"  >
-              <div class="card" style="width: 18rem; margin-bottom: 100px; ">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">{{course.name}}</h5>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-
-                </div>
-              </div>
-            </div>
-
-
-          </div> -->
-          <!-- *ngIf="course2.id!=empty" -->
-          <div class="row card-group "  >
+          <div class="row card-group "  *ngIf="subCourse.id==empty">
             <div class="col-4"  *ngFor="let video of loadedCourseVideo"  >
               <div class="card" style="width: 18rem; margin-bottom: 100px; ">
                 <img src="..." class="card-img-top" alt="...">
@@ -44,56 +30,28 @@
 
 
           </div>
+          
+          <div class="row card-group "*ngIf="subCourse.id!=empty">
+            <div class="col-4"  *ngFor="let video of loadedCourseVideosub"  >
+              <div class="card" style="width: 18rem; margin-bottom: 100px; ">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">{{video.name}}</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
 
-
-
-
-
-      <!-- <nav>
-          <div class="nav nav-tabs" id="nav-tab" role="tablist">
-            <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="flase" ></a>
-            <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Angular</a>
-            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">javascript</a>
-            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">python</a>
-            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">springboot</a>
-            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">kotline</a>
-          </div>
-        </nav>
-
-        <div class="tab-content" id="nav-tabContent">
-          <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-              <div class="row card-group" >
-                  <div class="col-4"  *ngFor="let course of courses | subcateroies:'1'" >
-                    <div class="card" style="width: 18rem; margin-bottom: 100px; ">
-                      <img src="..." class="card-img-top" alt="...">
-                      <div class="card-body">
-                        <h5 class="card-title">{{course}}</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-
-                      </div>
-                    </div>
-                  </div>
                 </div>
+              </div>
+            </div>
+
 
           </div>
-          <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+          
 
-              <div class="row card-group" >
-                  <div class="col-4"  *ngFor="let course of courses | subcateroies:'3'" >
-                    <div class="card" style="width: 18rem; margin-bottom: 100px; ">
-                      <img src="..." class="card-img-top" alt="...">
-                      <div class="card-body">
-                        <h5 class="card-title">{{course}}</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
 
-                      </div>
-                    </div>
-                  </div>
-                </div>
-          </div>
-          <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">...</div>
-        </div>
-  </div> -->
+
+
+
+     
 
 </div>
 </div>

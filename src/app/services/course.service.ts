@@ -6,7 +6,7 @@ import {HttpClient,HttpClientModule,HttpHeaders} from '@angular/common/http';
   providedIn: 'root'
 })
 export class CourseService {
- $isCourse = new EventEmitter();
+ 
 
   constructor(private http:HttpClient) { }
 // private _courses: Course[]=[
@@ -48,6 +48,12 @@ getCourseVideos(catergory){
 
    console.log(course);
    console.log("MMMMMMMMMMMMMMM")
+   return course;
+}
+
+getCourseVideossub(catergory,subCatergory){
+  const course=this.http.get("http://localhost:3000/course/"+catergory+"/"+subCatergory);
+  
    return course;
 }
 

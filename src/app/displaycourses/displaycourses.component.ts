@@ -15,7 +15,12 @@ import { EventEmitter } from 'events';
 export class DisplaycoursesComponent implements OnInit {
   loadedSubCourses:any // Subcourses[];
   loadedCourseVideo: any
+  loadedCourseVideosub: any
+
+
+
   mainCourse: { id: string }
+  subCourse: {id: string}
 
 
   constructor(private activatedRoute: ActivatedRoute, private subCourseService: SubcourseService, private coursesService: CourseService ) { }
@@ -30,7 +35,8 @@ export class DisplaycoursesComponent implements OnInit {
     //   console.log(response);
 
     // });
-    // get activated route
+
+    // get activated route main course
 
     this.mainCourse = {
       id: this.activatedRoute.snapshot.paramMap.get('catergory')
@@ -39,7 +45,17 @@ export class DisplaycoursesComponent implements OnInit {
       (params: Params) => {
         this.mainCourse.id = params['catergory'];
       }
-    )
+    );
+
+    //get activated route subcourse
+    this.subCourse = {
+      id: this.activatedRoute.snapshot.paramMap.get('subCatergory')
+    };
+    this.activatedRoute.params.subscribe(
+      (params: Params) => {
+        this.subCourse.id = params['subCatergory'];
+      }
+    );
     
       // display sub courses
     this.subCourseService. getSubcourses(this.mainCourse.id).subscribe(response => {
@@ -66,8 +82,26 @@ export class DisplaycoursesComponent implements OnInit {
       (courseVideos: string) => {
         this.loadedCourseVideo=courseVideos;
       }
-    )
+    );
 
+    //display videos according to sub catergories
+ 
+    this.coursesService.getCourseVideossub(this.mainCourse.id,this.subCourse.id).subscribe(response =>{
+      this.loadedCourseVideosub=response; 
+      console.log("subcourese");
+      console.log(response);
+    });
+    
+
+  }
+
+  onSubCourse(mCourse: string, sCourse: string){
+    this.coursesService.getCourseVideossub(mCourse,sCourse).subscribe(response =>{
+      this.loadedCourseVideosub=response;
+      console.log("subcourese");
+      console.log(this.subCourse.id);
+      console.log(response);
+    });
   }
 
 
