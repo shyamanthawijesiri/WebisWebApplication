@@ -94,7 +94,7 @@ export class DisplaycoursesComponent implements OnInit {
     
 
   }
-
+  //display videos according to sub catergories
   onSubCourse(mCourse: string, sCourse: string){
     this.coursesService.getCourseVideossub(mCourse,sCourse).subscribe(response =>{
       this.loadedCourseVideosub=response;

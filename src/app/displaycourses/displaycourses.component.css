@@ -1,7 +1,13 @@
-nav{
-  background-color: rgb(188, 209, 255);
+.sub-catergories{
+  background-color: rgb(238, 245, 255);
+}
+.sub-catergory-course{
+  margin-top: 40px;
+
+}
+a:hover{
+  text-decoration: none;
+  color:rgb(34, 34, 34);
+
 }
 
-.tab-content{
-  margin-top: 57px;
-}
