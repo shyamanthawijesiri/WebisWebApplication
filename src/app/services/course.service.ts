@@ -44,7 +44,8 @@ getCourses(){
 }
 
 getCourseVideos(catergory){
-  const course=this.http.get("http://localhost:3000/course/"+catergory);
+  const course=this.http.get("http://localhost:3000/subCatergory/display/"+catergory);
+ // const course=this.http.get("http://localhost:3000/subCatergory/display"+catergory);
 
    console.log(course);
    console.log("MMMMMMMMMMMMMMM")
@@ -52,7 +53,7 @@ getCourseVideos(catergory){
 }
 
 getCourseVideossub(catergory,subCatergory){
-  const course=this.http.get("http://localhost:3000/course/"+catergory+"/"+subCatergory);
+  const course=this.http.get("http://localhost:3000/subCatergory/display/"+catergory+"/"+subCatergory);
   
    return course;
 }

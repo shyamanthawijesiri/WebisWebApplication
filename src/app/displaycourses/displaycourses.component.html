@@ -1,7 +1,7 @@
 <div class="row" style="margin-top: 57px;">
   <div class="col-2">
     <h2 class='text-center'>Filter</h2>
-    
+  {{subCourse.id}}
 
 
   </div>
@@ -9,14 +9,15 @@
   <div class="col-10">
 
     <div class="row sub-catergories">
-        <div class="col-md-1 " *ngFor="let subcourse of loadedSubCourses " >
+        <div class="col-md-1 " *ngFor="let subcourse of loadedSubCourses.re " >
 
             <a [routerLink]="['/displaycourses',mainCourse.id,subcourse.name]" (click)="onSubCourse(mainCourse.id,subcourse.name)">{{subcourse.name}}</a>
           </div>
     </div>
 
           <div class="row card-group sub-catergory-course"  *ngIf="subCourse.id==empty">
-            <div class="col-4"  *ngFor="let video of loadedCourseVideo"  >
+              <!-- loadedCourseVideo.cor -->
+            <div class="col-4"  *ngFor="let video of loadedSubCourses.cor"  >
               <div class="card" style="width: 18rem; margin-bottom: 100px; ">
                 <img src="..." class="card-img-top" alt="...">
                 <div class="card-body">

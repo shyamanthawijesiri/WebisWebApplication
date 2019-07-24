@@ -37,7 +37,7 @@ export class SubcourseService {
 // }
     getSubcourses(catergory){
 
-
+console.log(catergory);
   // const course=this.http.get("http://localhost:3000/course/display");
   const course=this.http.get("http://localhost:3000/subCatergory/display/"+catergory);
 
