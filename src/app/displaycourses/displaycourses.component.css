@@ -11,3 +11,27 @@ a:hover{
 
 }
 
+.card{
+
+  height: 350px;
+
+}
+.card-body{
+border-top: solid white 1px;
+background-color: rgb(224, 224, 224);
+}
+img{
+
+  height: 200px;
+}
+form{
+  margin-left: 50px;
+
+}
+h4{
+  margin-top: 20px;
+}
+a{
+  display: block;
+  margin-top:20px;
+}

@@ -15,6 +15,8 @@ import { SubcateroiesPipe } from './pipes/subcateroies.pipe';
 import { MycoursesComponent } from './user/mycourses/mycourses.component';
 import { AccountComponent } from './user/account/account.component';
 import { MaincategoriesPipe } from './pipes/maincategories.pipe';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatInputModule,MatCardModule,MatButtonModule,MatToolbarModule, MatExpansionModule,MatCheckboxModule} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,14 @@ import { MaincategoriesPipe } from './pipes/maincategories.pipe';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatCheckboxModule,
+    MatExpansionModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatCardModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]
