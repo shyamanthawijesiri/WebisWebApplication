@@ -1,7 +1,8 @@
 <div class="row" style="margin-top: 57px">
+  <!-- filter colom -->
   <div class="col-2" style="background-color: rgb(238, 245, 255);border-right: solid white 2px;">
 
-    <h4 class='text-center' style=" rgb(204, 204, 204) 2px;">Filter By </h4><br>
+    <h4 class='text-center'>Filter By </h4><br>
 
     <form>
 
@@ -15,7 +16,7 @@
       <mat-checkbox color="primary">Advance</mat-checkbox>
       <hr>
       <h6>Duration</h6><br>
-      <mat-checkbox color="primary"> Month</mat-checkbox><br>
+      <mat-checkbox color="primary"> &lt; Month</mat-checkbox><br>
       <mat-checkbox color="primary">1 - 3 Month</mat-checkbox><br>
       <mat-checkbox color="primary">3+ Month</mat-checkbox>
 
@@ -26,52 +27,53 @@
 
 
   </div>
+  <!-- course colom -->
 
   <div class="col-10">
 
-    <div class="row sub-catergories " style="padding-bottom: 20px;">
+    <div class="row sub-catergories">
         <div class="col-md-1 " *ngFor="let subcourse of loadedSubCourses.re " >
 
             <a [routerLink]="['/displaycourses',mainCourse.id,subcourse.name]" (click)="onSubCourse(mainCourse.id,subcourse.name)">{{subcourse.name}}</a>
           </div>
     </div>
 
-          <div class="row card-group sub-catergory-course"  *ngIf="subCourse.id==empty">
+          <div class="row card-group sub-catergory-course"  *ngIf="subCourse.id==null">
               <!-- loadedCourseVideo.cor -->
             <div class="col-4"  *ngFor="let video of loadedSubCourses.cor"  >
-              <div class="card" style="width: 18rem; margin-bottom: 100px; ">
-                <img src={{video.url}} class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">{{video.name}}</h5>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a [routerLink]="['/course',video._id]">
+                  <div class="card" >
+                      <img src={{video.url}} class="card-img-top" alt="...">
+                      <div class="card-body">
+                        <h5 class="card-title">{{video.name}}</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
 
-                </div>
-              </div>
+                      </div>
+                    </div>
+              </a>
+
             </div>
 
 
           </div>
 
-          <div class="row card-group sub-catergory-course"*ngIf="subCourse.id!=empty">
+          <div class="row card-group sub-catergory-course"*ngIf="subCourse.id!=null">
             <div class="col-4"  *ngFor="let video of loadedCourseVideosub"  >
-              <div class="card" style="width: 18rem; margin-bottom: 100px; ">
-                <img src={{video.url}} class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">{{video.name}}</h5>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a [routerLink]="[video._id]">
+                  <div class="card">
+                      <img src={{video.url}} class="card-img-top" alt="...">
+                      <div class="card-body">
+                        <h5 class="card-title">{{video.name}}</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
 
-                </div>
-              </div>
+                      </div>
+                    </div>
+              </a>
+
             </div>
 
 
           </div>
-
-
-
-
-
-
 
 
 </div>

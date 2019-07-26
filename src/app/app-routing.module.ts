@@ -5,10 +5,12 @@ import { DisplaycoursesComponent } from './displaycourses/displaycourses.compone
 import { ContentproviderComponent } from './contentprovider/contentprovider.component';
 import { AddcourseComponent } from './contentprovider/addcourse/addcourse.component';
 import { AccountComponent} from './user/account/account.component';
+import { CourseComponent } from './course/course.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
   {path: 'home', component: HomeComponent},
+  {path: 'course/:id', component: CourseComponent},
 
   {path: 'displaycourses', component: DisplaycoursesComponent},
   {path: 'displaycourses/:catergory', component: DisplaycoursesComponent},

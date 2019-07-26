@@ -17,6 +17,7 @@ import { AccountComponent } from './user/account/account.component';
 import { MaincategoriesPipe } from './pipes/maincategories.pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatInputModule,MatCardModule,MatButtonModule,MatToolbarModule, MatExpansionModule,MatCheckboxModule} from '@angular/material';
+import { CourseComponent } from './course/course.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { MatInputModule,MatCardModule,MatButtonModule,MatToolbarModule, MatExpan
     SubcateroiesPipe,
     MycoursesComponent,
     AccountComponent,
-    MaincategoriesPipe
+    MaincategoriesPipe,
+    CourseComponent
   ],
   imports: [
     BrowserModule,
