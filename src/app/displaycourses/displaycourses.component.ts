@@ -23,18 +23,9 @@ export class DisplaycoursesComponent implements OnInit {
   subCourse: {id: string}
 
 
-  constructor(private activatedRoute: ActivatedRoute, private subCourseService: SubcourseService, private coursesService: CourseService ) { }
+  constructor(private activatedRoute: ActivatedRoute, private subCourseService: SubcourseService, private courseService: CourseService ) { }
 
   ngOnInit() {
-
-     //this.loadedSubCourses = this.subCourseService.subcourses;
-     //this.loadedCourses = this.coursesService.courses;
-
-    // this.loadedCourses = this.coursesService.getCourses().subscribe(response => {
-    //   this.loadedCourses=response;
-    //   console.log(response);
-
-    // });
 
     // get activated route main course
 
@@ -56,15 +47,15 @@ export class DisplaycoursesComponent implements OnInit {
         this.subCourse.id = params['subCatergory'];
       }
     );
-    
+
       // display sub courses
     this.subCourseService. getSubcourses(this.mainCourse.id).subscribe(response => {
       this.loadedSubCourses=response;
 
       console.log(response);
     });
-   
-     
+
+
     this.subCourseService.courseUpdate.subscribe(
       (course: string)=>{
       this.loadedSubCourses=course;
@@ -73,30 +64,31 @@ export class DisplaycoursesComponent implements OnInit {
 
     //display videos
 
-    this.coursesService.getCourseVideos(this.mainCourse.id).subscribe(response =>{
+    this.courseService.getCourseVideos(this.mainCourse.id).subscribe(response =>{
       this.loadedCourseVideo=response;
       console.log(response);
     });
 
-    this.coursesService.courseVideoUpdate.subscribe(
+    this.courseService.courseVideoUpdate.subscribe(
       (courseVideos: string) => {
         this.loadedCourseVideo=courseVideos;
       }
     );
 
     //display videos according to sub catergories
- 
-    this.coursesService.getCourseVideossub(this.mainCourse.id,this.subCourse.id).subscribe(response =>{
-      this.loadedCourseVideosub=response; 
+
+    this.courseService.getCourseVideossub(this.mainCourse.id,this.subCourse.id).subscribe(response =>{
+      this.loadedCourseVideosub=response;
       console.log("subcourese");
       console.log(response);
     });
-    
+
 
   }
+
   //display videos according to sub catergories
   onSubCourse(mCourse: string, sCourse: string){
-    this.coursesService.getCourseVideossub(mCourse,sCourse).subscribe(response =>{
+    this.courseService.getCourseVideossub(mCourse,sCourse).subscribe(response =>{
       this.loadedCourseVideosub=response;
       console.log("subcourese");
       console.log(this.subCourse.id);

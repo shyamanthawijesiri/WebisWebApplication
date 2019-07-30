@@ -1,12 +1,13 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { Course } from '../course.model';
 import {HttpClient,HttpClientModule,HttpHeaders} from '@angular/common/http';
+import { DisplaycoursesComponent } from '../displaycourses/displaycourses.component';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CourseService {
- 
+
 
   constructor(private http:HttpClient) { }
 // private _courses: Course[]=[
@@ -54,12 +55,19 @@ getCourseVideos(catergory){
 
 getCourseVideossub(catergory,subCatergory){
   const course=this.http.get("http://localhost:3000/subCatergory/display/"+catergory+"/"+subCatergory);
-  
+
    return course;
 }
 
-courseVideoUpdate = new EventEmitter<string>( )
+courseVideoUpdate = new EventEmitter<string>( );
+courseDetail = new EventEmitter<string>();
 
-
+//display a full course
+displaycourse(id: string){
+  const course = this.http.get("http://localhost:3000/course/display/"+id);
+  return course;
 
 }
+
+}
+
