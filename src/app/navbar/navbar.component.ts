@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Course } from '../course.model';
 import { CourseService } from '../services/course.service';
 import { SubcourseService } from '../services/subcourse.service';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-navbar',
@@ -10,12 +11,28 @@ import { SubcourseService } from '../services/subcourse.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
+  //login
+  email: string;
+  password: string;
+
+  //sign up
+  firstName: string;
+  lastName: string;
+
+
+
+
+
   loadedCourses: any //Course[];
   loadedSubCourses: any
   loadedCourseVideo: any
 
 
-  constructor(private activatedRoute: ActivatedRoute, private courseService: CourseService, private subCourseService: SubcourseService) { }
+  constructor(private activatedRoute: ActivatedRoute,
+              private courseService: CourseService,
+              private subCourseService: SubcourseService,
+              private userService: UserService,
+              private router: Router) { }
 
   ngOnInit() {
     console.log("navbar");
@@ -55,5 +72,30 @@ export class NavbarComponent implements OnInit {
 
   //   });
   //}
+
+  onLogin(){
+    const user = {
+      username: this.email,
+      password: this.password
+    }
+
+
+    this.userService.authenticateUser(user).subscribe(data => {
+        if (data.success) {
+            console.log('succussful login');
+            //.router.navigate(['categories']);
+          //  this.authService.storeUserData(data.token, data.user);
+
+        } else {
+          console.log('error login');
+        //this.router.navigate(['login']);
+        }
+
+
+
+      });
+
+  }
+
 
 }
