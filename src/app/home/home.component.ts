@@ -9,10 +9,10 @@ import { UserService } from '../services/user.service';
 export class HomeComponent implements OnInit {
   courses = [1, 2, 3, 4, 5];
 
-  email: string;
-  password: string;
   firstName: string;
   lastName: string;
+  email: string;
+  password: string;
 
   constructor(private userService: UserService) { }
 
@@ -28,10 +28,11 @@ export class HomeComponent implements OnInit {
       email: this.email,
       password: this.password
     }
+    console.log(user);
 
 
-    this.userService.registerUser(user).subscribe(data => {
-      if(data.success){
+    this.userService.registerUser(user).subscribe((data) => {
+      if(data.state){
 
        console.log('registered');
        //this.router.navigateByUrl('/login');

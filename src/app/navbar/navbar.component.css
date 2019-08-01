@@ -31,3 +31,19 @@ li{
  background-color: rgb(150, 184, 235);
 }
 
+#logout{
+  height: 50px;
+  width: 50px;
+}
+
+/*drop down arrow */
+.logout-dropdown::after {
+  display:none;
+}
+
+.logout-dropdown-menu{
+  width: 200px;
+  height: 100px;
+  overflow: hidden;
+}
+

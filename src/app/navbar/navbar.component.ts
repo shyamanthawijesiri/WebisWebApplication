@@ -15,9 +15,8 @@ export class NavbarComponent implements OnInit {
   email: string;
   password: string;
 
-  //sign up
-  firstName: string;
-  lastName: string;
+
+
 
 
 
@@ -75,16 +74,17 @@ export class NavbarComponent implements OnInit {
 
   onLogin(){
     const user = {
-      username: this.email,
+      email: this.email,
       password: this.password
     }
 
 
     this.userService.authenticateUser(user).subscribe(data => {
         if (data.success) {
+         // this.userService.storeUserData(data.token,data.user);
             console.log('succussful login');
-            //.router.navigate(['categories']);
-          //  this.authService.storeUserData(data.token, data.user);
+            this.router.navigateByUrl('/account');
+            this.userService.storeUserData(data.token, data.user);
 
         } else {
           console.log('error login');

@@ -1,7 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule} from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http'
+import {HttpClientModule} from '@angular/common/http';
+import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -18,6 +19,11 @@ import { MaincategoriesPipe } from './pipes/maincategories.pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatInputModule,MatCardModule,MatButtonModule,MatToolbarModule, MatExpansionModule,MatCheckboxModule} from '@angular/material';
 import { CourseComponent } from './course/course.component';
+
+export function tokenGetter() {
+  return localStorage.getItem('id_token');
+}
+
 
 @NgModule({
   declarations: [
@@ -44,7 +50,13 @@ import { CourseComponent } from './course/course.component';
     MatToolbarModule,
     MatButtonModule,
     MatCardModule,
-    MatInputModule
+    MatInputModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter
+
+      }
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -7,16 +7,16 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./account.component.css']
 })
 export class AccountComponent implements OnInit {
-  selectedFile = null;
+  selectedFile: File = null;
   constructor(private userService: UserService) { }
 
   ngOnInit() {
   }
 
   onFileSelected(event){
-    this.selectedFile = event.target.files[0];
+    this.selectedFile = <File>event.target.files[0];
   }
 
-
+  onUpload(){}
 
 }
