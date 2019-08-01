@@ -59,8 +59,12 @@ export class DisplaycoursesComponent implements OnInit {
     this.subCourseService.courseUpdate.subscribe(
       (course: string)=>{
       this.loadedSubCourses=course;
+      console.log(this.loadedSubCourses);
       }
+
     );
+    console.log('ssssssssssssssss');
+    console.log(this.loadedSubCourses);
 
     //display videos
 

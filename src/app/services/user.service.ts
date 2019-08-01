@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import {map} from 'rxjs/operators';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { JwtHelperService } from '@auth0/angular-jwt';
@@ -30,7 +30,6 @@ export class UserService {
   }
  // user logout
   logout(){
-    console.log("In logout");
     this.authToken=null;
     this.user=null;
     localStorage.clear();
@@ -50,9 +49,26 @@ export class UserService {
   }
 
   //image upload
-  uploadImage(selectedFile: File){
+  uploadImage(selectedFile: File,id: string){
     const fd = new FormData();
     fd.append('image', selectedFile, selectedFile.name);
-    //this.http.post("http://localhost:3000/users/uploadUserImage/");
+    this.http.post('http://localhost:3000/users/uploadUserImage/'+id,fd)
+    .subscribe(res => {
+      console.log(res);
+    });
+
+
+  }
+  uploadImg = new EventEmitter<string>( );
+  loadToken(){
+    const token=localStorage.getItem('id_token');
+    this.authToken=token;
+  }
+
+
+  //get image
+  getImage(id: string){
+    const userImg=this.http.get('http://localhost:3000/users/'+id);
+    return userImg;
   }
 }

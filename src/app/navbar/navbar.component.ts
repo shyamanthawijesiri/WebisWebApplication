@@ -15,12 +15,9 @@ export class NavbarComponent implements OnInit {
   email: string;
   password: string;
 
-
-
-
-
-
-
+  userId: any;
+  pass: any;
+  userImg:any;
 
   loadedCourses: any //Course[];
   loadedSubCourses: any
@@ -47,7 +44,19 @@ export class NavbarComponent implements OnInit {
 
 
 
+    //get user image
+    this.userId = localStorage.getItem('user');
+     this.pass = JSON.parse(this.userId)
 
+
+
+
+
+    this.userService. getImage(this.pass.id).subscribe(response => {
+      this.userImg=response;
+
+      console.log(response);
+    });
   }
   // subcatergory update
    onSelect(courseName: string){
@@ -85,6 +94,11 @@ export class NavbarComponent implements OnInit {
             console.log('succussful login');
             this.router.navigateByUrl('/account');
             this.userService.storeUserData(data.token, data.user);
+            this.userId = data.user;
+            this.userService.uploadImg.emit(this.userId);
+            this.userImg = this.pass.imageURL;
+            console.log(data.user);
+
 
         } else {
           console.log('error login');
@@ -95,6 +109,10 @@ export class NavbarComponent implements OnInit {
 
       });
 
+  }
+  onLogout(){
+    this.userService.logout();
+    this.userImg=null;
   }
 
 
