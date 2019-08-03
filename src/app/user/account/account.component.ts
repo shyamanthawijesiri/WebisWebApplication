@@ -11,6 +11,10 @@ export class AccountComponent implements OnInit {
   userId: any;
   userImg: any;
   pass: any;
+
+  //update name
+  fname: string;
+  lname: string;
   constructor(private userService: UserService) { }
 
   ngOnInit() {
@@ -41,7 +45,23 @@ export class AccountComponent implements OnInit {
   }
 
   uploadImage1(){
+    const user ={
+      fname: this.fname,
+      lname: this.lname
+    }
+    
+    this.userService.updataAccount(user,this.pass.id).subscribe(data =>{
+      console.log('update');
+      console.log(data.state);
+      if(data.state){
+        console.log('update success');
+      }else{
+        console.log('updata failed');
+      }
+    });
     this.userService.uploadImage(this.selectedFile,this.pass.id);
+
+
   }
 
 }
