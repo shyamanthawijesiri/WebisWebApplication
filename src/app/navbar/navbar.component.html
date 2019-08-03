@@ -39,11 +39,10 @@
       </ul>
 
         <button *ngIf="!userService.loggedIn()" type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#exampleModal"> Login</button>
-        <!-- <button *ngIf="userService.loggedIn()"type="button" (click)="userService.logout()" routerLink="/home" class="btn btn-outline-danger" > LogOut</button> -->
-        <!-- Example single danger button -->
+
         <div class="btn-group" *ngIf="userService.loggedIn()">
-          <!-- <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> -->
-              <img id="logout" src="{{userImg.imageURL}}" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="rounded-circle">
+    
+              <img id="logout" src="{{user.imageURL}}" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="rounded-circle">
 
 
               <div class="dropdown-menu" style="margin-left: -100px;">

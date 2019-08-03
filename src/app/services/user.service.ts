@@ -47,6 +47,12 @@ export class UserService {
     // console.log(user);
 
   }
+  loadToken(){
+    const token=localStorage.getItem('user');
+    return JSON.parse(token)
+   // this.authToken=token;
+  }
+
 
   //image upload
   uploadImage(selectedFile: File,id: string){
@@ -60,16 +66,11 @@ export class UserService {
 
   }
   uploadImg = new EventEmitter<string>( );
-  loadToken(){
-    const token=localStorage.getItem('id_token');
-    this.authToken=token;
-  }
+ 
 
-
-  //get image
-  getImage(id: string){
-    const userImg=this.http.get('http://localhost:3000/users/'+id);
-    return userImg;
+  //get user details
+  getUser(id: string){
+    return this.http.get('http://localhost:3000/users/'+id);
   }
 
   updataAccount(user,id: string){
@@ -79,4 +80,5 @@ export class UserService {
 
 
   }
+  
 }

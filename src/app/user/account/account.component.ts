@@ -18,14 +18,13 @@ export class AccountComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   ngOnInit() {
-    this.userId = localStorage.getItem('user');
-     this.pass = JSON.parse(this.userId)
+     this.pass = this.userService.loadToken();
+      
 
 
 
 
-
-    this.userService. getImage(this.pass.id).subscribe(response => {
+    this.userService. getUser(this.pass.id).subscribe(response => {
       this.userImg=response;
 
       console.log(response);

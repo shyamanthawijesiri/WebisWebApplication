@@ -10,29 +10,6 @@ export class CourseService {
 
 
   constructor(private http:HttpClient) { }
-// private _courses: Course[]=[
-
-//   new Course(
-//     'c1',
-//     'Web Development'
-//   ),
-//   new Course(
-//     'c2',
-//     'Mobile Development'
-//   ),
-//   new Course(
-//     'c3',
-//     'Science'
-//   ),
-//   new Course(
-//     'c4',
-//     'Music'
-//   ),
-// ];
-
-// get courses(){
-//   return [...this._courses];
-// }
 
 getCourses(){
  // const course=this.http.get("http://localhost:3000/course/display");
@@ -67,6 +44,11 @@ displaycourse(id: string){
   const course = this.http.get("http://localhost:3000/course/display/"+id);
   return course;
 
+}
+//user register for a course
+registerUser(id: string){
+  let header = new HttpHeaders();
+  header.append('Content-Type','application/json');
 }
 
 }
