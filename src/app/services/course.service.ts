@@ -1,4 +1,5 @@
 import { Injectable, EventEmitter } from '@angular/core';
+import {map} from 'rxjs/operators';
 import { Course } from '../course.model';
 import {HttpClient,HttpClientModule,HttpHeaders} from '@angular/common/http';
 import { DisplaycoursesComponent } from '../displaycourses/displaycourses.component';
@@ -20,7 +21,10 @@ getCourses(){
   return course;
 
 }
+getFullCourse(){
+ return this.http.get("http://localhost:3000/course/display");
 
+}
 getCourseVideos(catergory){
   const course=this.http.get("http://localhost:3000/subCatergory/display/"+catergory);
  // const course=this.http.get("http://localhost:3000/subCatergory/display"+catergory);
@@ -46,9 +50,12 @@ displaycourse(id: string){
 
 }
 //user register for a course
-registerUser(id: string){
-  let header = new HttpHeaders();
-  header.append('Content-Type','application/json');
+registerUserToCourse(course, id: string){
+  let headers = new HttpHeaders();
+  headers.append('Content-Type','application/json').append('Authorization',localStorage.getItem('id_token'));
+ // headers.append('x-auth-token',localStorage.getItem('id_token'));
+  return this.http.post('http://localhost:3000/course/registerCourse/'+id,course,{headers:headers}).pipe(map((res:any)=>res));
+
 }
 
 }

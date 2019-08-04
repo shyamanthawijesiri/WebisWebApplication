@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import {FormControl} from '@angular/forms';
+import {Observable} from 'rxjs';
+import {map, startWith} from 'rxjs/operators';
 import { Course } from '../course.model';
+
 import { CourseService } from '../services/course.service';
 import { SubcourseService } from '../services/subcourse.service';
 import { UserService } from '../services/user.service';
@@ -18,10 +22,14 @@ export class NavbarComponent implements OnInit {
   pass: any;
   user:any;
 
+  fullCourse: any;
   loadedCourses: any //Course[];
   loadedSubCourses: any
   loadedCourseVideo: any
-
+//----------------------------------------------------
+  myControl = new FormControl();
+  options: string[] = ['Shyamantha', 'Bhashitha', 'Hesith','Keshani','Yasara'];
+   filteredOptions: Observable<string[]>;
 
   constructor(private activatedRoute: ActivatedRoute,
               private courseService: CourseService,
@@ -30,19 +38,29 @@ export class NavbarComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit() {
-    console.log("navbar");
+
+    this.filteredOptions = this.myControl.valueChanges
+    .pipe(
+      startWith(''),
+      map(value => this._filter(value))
+    );
+
+    this.courseService.getFullCourse().subscribe(response =>{
+      this.fullCourse=response;
+      
+      console.log(this.fullCourse.name)
+    });
+    console.log("auto complete")
+    console.log(this.fullCourse)
+    console.log("auto complete")
 
 
     this.courseService.getCourses()
     .subscribe(response => {
       this.loadedCourses=response;
-
+      
 
     });
-    console.log(this.loadedCourses);
-
-
-
     //get user image
     this.userDetails();
            
@@ -57,10 +75,10 @@ export class NavbarComponent implements OnInit {
 
     });
     // main catergory video update
-    console.log(courseName);
     this.courseService.getCourseVideos(courseName).subscribe(response =>{
       this.loadedCourseVideo=response;
       this.courseService.courseVideoUpdate.emit(this.loadedCourseVideo);
+      console.log(response);
     });
    }
   // clickSubCatergories(){
@@ -104,6 +122,12 @@ export class NavbarComponent implements OnInit {
     this.userService.getUser(this.pass.id).subscribe(response => {
     this.user=response;
     });
+  }
+
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.options.filter(option => option.toLowerCase().includes(filterValue));
   }
 
 
