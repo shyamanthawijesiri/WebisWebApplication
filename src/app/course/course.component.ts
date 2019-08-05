@@ -3,12 +3,16 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { CourseService } from '../services/course.service';
 import { UserService } from '../services/user.service';
 
+
+import { from } from 'rxjs';
+
 @Component({
   selector: 'app-course',
   templateUrl: './course.component.html',
   styleUrls: ['./course.component.css']
 })
 export class CourseComponent implements OnInit {
+
   loadedCourse: any;
   course: {id: string}
   pass: any;
@@ -38,23 +42,32 @@ export class CourseComponent implements OnInit {
       this.loadedCourse=response;
     })
 
-    
-    
+
+
   }
-  
+
   onRegisterCourse(){
     const course ={
       userId: this.pass.id,
       id: this.course.id
     }
-    this.courseService.registerUserToCourse(course,this.course.id).subscribe(data =>{
+    console.log('success');
+    console.log(course);
+    this.courseService.registerUserToCourse(course,this.course.id).subscribe(res =>{
+     if(res.state){
+       console.log('succefully register to course');
+     }else{
+       console.log('register faild');
+     }
 
-      if(data.state){
-        console.log("successfully register");
-      }else{
-        console.log('register failed');
-      }
-    })
+      // console.log(res.state)
+      // if(res.state){
+      //   console.log("successfully register");
+      // }else{
+      //   console.log('register failed');
+      // }
+    }
+   )
 
   }
 

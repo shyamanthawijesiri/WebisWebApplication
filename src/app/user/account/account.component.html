@@ -16,9 +16,9 @@
         <div class="tab-content" id="v-pills-tabContent">
             <div class="tab-pane fade show active" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
 
-                <form (submit)="uploadImage1()">
+                <form >
                    <!-- --------------------------change name------------------------------- -->
-                  
+
                   <h5>Change Name</h5>
                     <div class="form-row" style=" margin-bottom: 30px;">
                       <div class="col">
@@ -50,7 +50,7 @@
                       <div class="form-row">
                           <div class="form-group">
 
-                              <button type="submit"  class="btn btn-outline-primary float-right">Save</button>
+                              <button type="submit" (click)="uploadImage1()" class="btn btn-outline-primary float-right">Save</button>
 
                           </div>
                       </div>

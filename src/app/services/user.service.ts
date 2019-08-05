@@ -66,7 +66,7 @@ export class UserService {
 
   }
   uploadImg = new EventEmitter<string>( );
- 
+
 
   //get user details
   getUser(id: string){
@@ -78,7 +78,6 @@ export class UserService {
     headers.append('Content-Type', 'application/json');
     return this.http.put('http://localhost:3000/users/update/'+id,user,{headers:headers}).pipe(map((res:any)=>res));
 
-
   }
-  
+
 }
