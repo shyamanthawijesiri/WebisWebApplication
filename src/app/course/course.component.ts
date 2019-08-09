@@ -49,7 +49,7 @@ export class CourseComponent implements OnInit {
   onRegisterCourse(){
     const course ={
       userId: this.pass.id,
-      id: this.course.id
+      courseId: this.course.id
     }
     console.log('success');
     console.log(course);

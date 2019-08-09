@@ -1,4 +1,4 @@
-<form style="margin-top: 100px;">
+<form style="margin-top: 100px;"  >
   <div class="container">
 
   <div class="row">
@@ -24,21 +24,92 @@
   </div>
   <div class="row">
     <div class="form-group col-sm">
-      <div class="input_fields_wrap">
-        <button class="add_field_button">Add More Fields</button>
-        <div><input type="text" name="mytext[]"></div>
-    </div>
-        <!-- <label for="Content">Content</label>
-        <textarea class="form-control" id="Content" rows="5"></textarea> -->
 
 
 
-    </div>
-  </div>
-  <div class="row">
+
+
+        </div>
+      </div>
+
+      <div class="row">
     <div class="col-sm">
-       <button type="submit" class="btn btn-secondary btn-block" style="float: right;margin-top: 15px; margin-bottom: 30px;">Add Course</button>
+       <button type="submit" class="btn btn-outline-primary" style="margin-top: 15px; margin-bottom: 30px;">Save</button>
+      </div>
     </div>
-  </div>
 </div>
+</form >
+<form  [formGroup]="questionForm"  >
+  <!-- <div class="container">
+    <div class="row" style="margin-bottom: 50px;">
+      <div class="col-12">
+        <h4 class="text-center">Course content</h4>
+      </div>
+  </div>
+    <div class="row">
+      <div class="col-md-6">
+        <h6>Sub Topic</h6>
+      </div>
+    <div class="col-md-2">
+        <h6>Add video</h6>
+      </div>
+    <div class="col-md-2">
+        <h6>Add files</h6>
+      </div>
+    </div>
+    <div class="row" *ngFor="let obj of dataArray; let i = index;">
+        <div class="form-row-group col-md-6" id="row-contet" >
+            <input type="text" class="form-control" [(ngModel)]="obj.name" name="name{{i}}">{{i}}
+          </div>
+
+          <div class="form-row-group col-md-2" id="row-contet">
+            <input type="text" class="form-control" [(ngModel)]="obj.video" name="video{{i}}">
+          </div>
+          <div class="form-row-group col-md-2" id="row-contet">
+              <input type="text" class="form-control" [(ngModel)]="obj.file" name="file{{i}}">
+          </div>
+          <div class="form-row-group col-md-2" >
+              <span class="btn btn-outline-danger" >Remove</span>
+               <button type="submit">rmove</button>
+          </div>
+
+
+    </div> -->
+    <!-- <div class="row" style="margin-bottom: 150px;">
+      <span class="btn btn-outline-success"  style="margin-left: 15px;">Add sub topic</span>
+      <span class="btn btn-outline-primary" (click)="onSubmit()" style="margin-left: 15px;">Save</span>
+    </div> -->
+
+  <!-- </div> -->
+
+  <!-- <fieldset>
+    <span class="btn btn-outline-success" (click)="addCouse(subTopic)" style="margin-left: 15px;">Add sub topic</span>
+    <div class="input-group" >
+      <input type="text" class="form-control" #subTopic >
+      <span class="btn btn-outline-success" (click)="deleteCouse()" style="margin-left: 15px;">Remove</span>
+    </div>
+
+  </fieldset>
+  <ul class="list-group">
+    <li class="list-group-item" *ngFor="let subTopic of userForm.get('subTopic').controls; let i= index;">
+      <input type="text" value={{subTopic.value}}>
+        <span class="btn btn-outline-primary"  style="margin-left: 15px;" (click)="editCourse()">edit</span>
+        <span class="btn btn-outline-primary"  style="margin-left: 15px;" (click)=" deleteCouse(i)">delete</span>
+    </li>
+  </ul>
+  <span class="btn btn-outline-primary" (click)="onSubmit()" style="margin-left: 15px;">Save</span> -->
+
 </form>
+<div formArrayName="mcq" >
+  <div class="form-group" *ngFor="let mcq of questionForm.get('mcq').controls; let i = index">
+
+      <input matInput placeholder='mcq answer {{i+1}}' [formControlName]="i">
+      <button matSuffix mat-icon-button type="button" (click)="onDeleteMcq(i)">
+        delete
+      </button>
+
+  </div>
+  <button mat-stroked-button style="width: 100%" type="button" (click)="onAddMcq()">+ Add Mcq</button>
+  <span class="btn btn-outline-primary" (click)="onSubmit()" style="margin-left: 15px;">Save</span> -->
+</div>
+
