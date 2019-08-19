@@ -19,26 +19,20 @@ export class AccountComponent implements OnInit {
 
   ngOnInit() {
      this.pass = this.userService.loadToken();
-      
 
 
 
 
-    this.userService. getUser(this.pass.id).subscribe(response => {
-      this.userImg=response;
+     this.userService. getUser(this.pass.id).subscribe(response => {
+      this.userImg = response;
 
       console.log(response);
     });
 
 
-    // this.userService.uploadImg.subscribe(
-    //   (userId: string)=>{
-    //   this.userId=userId;
-    //   }
-    // );
 
   }
-
+ //set imgage
   onFileSelected(event){
     this.selectedFile = <File>event.target.files[0];
   }
@@ -48,7 +42,7 @@ export class AccountComponent implements OnInit {
       fname: this.fname,
       lname: this.lname
     }
-    
+
     this.userService.updataAccount(user,this.pass.id).subscribe(data =>{
       console.log('update');
       console.log(data.state);
@@ -60,6 +54,10 @@ export class AccountComponent implements OnInit {
     });
     this.userService.uploadImage(this.selectedFile,this.pass.id);
 
+
+  }
+
+  onDelete(){
 
   }
 

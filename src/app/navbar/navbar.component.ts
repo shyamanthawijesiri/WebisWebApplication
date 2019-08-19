@@ -26,7 +26,7 @@ export class NavbarComponent implements OnInit {
   loadedCourses: any //Course[];
   loadedSubCourses: any
   loadedCourseVideo: any
-//----------------------------------------------------
+// ----------------------------------------------------
   myControl = new FormControl();
   options: string[] = ['Shyamantha', 'Bhashitha', 'Hesith','Keshani','Yasara'];
    filteredOptions: Observable<string[]>;
@@ -47,24 +47,21 @@ export class NavbarComponent implements OnInit {
 
     this.courseService.getFullCourse().subscribe(response =>{
       this.fullCourse=response;
-      
       console.log(this.fullCourse.name)
     });
-    console.log("auto complete")
+
+    console.log('auto complete')
     console.log(this.fullCourse)
-    console.log("auto complete")
+    console.log('auto complete')
 
 
     this.courseService.getCourses()
     .subscribe(response => {
       this.loadedCourses=response;
-      
-
     });
-    //get user image
+    // get user image
+
     this.userDetails();
-           
-    
   }
   // subcatergory update
    onSelect(courseName: string){
@@ -100,12 +97,12 @@ export class NavbarComponent implements OnInit {
         if (data.success) {
          // this.userService.storeUserData(data.token,data.user);
             console.log('succussful login');
-            this.router.navigateByUrl('/account');
+            this.router.navigateByUrl('/mycourses');
             this.userService.storeUserData(data.token, data.user);
             this.userDetails();
-           
-            
-          
+
+
+
 
         } else {
           console.log('error login');

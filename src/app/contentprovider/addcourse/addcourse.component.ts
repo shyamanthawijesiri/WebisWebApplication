@@ -11,16 +11,18 @@ import { course } from './addcourse.model';
 })
 export class AddcourseComponent implements OnInit {
 
- course = new course();
-   dataArray =[];
+//  course = new course();
+//    dataArray =[];
 
-   questionForm: FormGroup;
+   contentForm: FormGroup;
+
 
   constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
-    this.questionForm = this.fb.group({
-      mcq: new FormArray([]),
+    this.contentForm = this.fb.group({
+      topic: new FormArray([]),
+      file : new FormArray([])
     });
 
 
@@ -35,12 +37,15 @@ export class AddcourseComponent implements OnInit {
   //  this.dataArray.push(this.course);
   }
 
-  onDeleteMcq(i: number) {
-    (<FormArray>this.questionForm.get('mcq')).removeAt(i);
+  onDelete(i: number) {
+    (this.contentForm.get('topic') as FormArray).removeAt(i);
+    (this.contentForm.get('file') as FormArray).removeAt(i);
   }
-  onAddMcq() {
+  onAdd() {
     const control = new FormControl(null, Validators.required);
-    (<FormArray>this.questionForm.get('mcq')).push(control);
+    const control2 = new FormControl(null, Validators.required);
+    (this.contentForm.get('topic') as FormArray).push(control);
+    (this.contentForm.get('file') as FormArray).push(control2);
   }
 
 
@@ -94,7 +99,8 @@ export class AddcourseComponent implements OnInit {
 
 onSubmit(){
   //console.log(this.userForm.get('subTopic').value)
-console.log(this.questionForm.value);
+console.log(this.contentForm.get('topic').value);
+console.log(this.contentForm.get('file').value)
 }
 
 }

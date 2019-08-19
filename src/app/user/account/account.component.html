@@ -20,14 +20,15 @@
                    <!-- --------------------------change name------------------------------- -->
 
                   <h5>Change Name</h5>
+
                     <div class="form-row" style=" margin-bottom: 30px;">
                       <div class="col">
-                        <input type="text" class="form-control" placeholder="First name" name="fname" [(ngModel)]="fname">
+                        <input type="text" class="form-control" placeholder="First name" name="fname1" [(ngModel)]="fname" value="{{userImg.fname}}">
                       </div>
                       <div class="col">
-                        <input type="text" class="form-control" placeholder="Last name" name="lname" [(ngModel)]="lname">
+                        <input type="text" class="form-control" placeholder="Last name" name="lname1" [(ngModel)]="lname" value="{{userImg.lname}}">
                       </div>
-                      {{userImg.fname}}
+
                     </div>
                      <!-- --------------------------change Image------------------------------- -->
                     <h5>Add/Change Image</h5>
