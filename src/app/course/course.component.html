@@ -2,17 +2,17 @@
 <div class="row" style="margin-top:57px;">
   <div class="col-sm-3 col-md-2 image" >
     <img src="{{loadedCourse.url}}">
-    <button type="submit" class="btn btn-primary" (click)="onRegisterCourse()">Enroll</button>
+    <div *ngIf="userService.loggedIn()">
+
+      <button type="submit" class="btn btn-primary" (click)="onRegisterCourse()">Enroll</button>
+    </div>
   </div>
   <div class="col-sm-9 col-md-10 col-details">
       <div class="row details">
           <div class="col-12">
             <h3>{{loadedCourse.name}}</h3>
-            <p>Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content
-              .Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content
-            </p>
-            <p>Rating:**********</p>
-            <p>{{loadedCourse.author}}</p>
+            <p>{{loadedCourse.description}}</p>
+            <p>Author: {{loadedCourse.author}}</p>
 
           </div>
 

@@ -13,6 +13,7 @@ import { MatInputModule,
          MatFormFieldModule,
          MatAutocompleteModule
         } from '@angular/material';
+import { RatingModule } from 'ng-starrating';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -56,6 +57,7 @@ export function tokenGetter() {
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    RatingModule,
     MatCheckboxModule,
     MatExpansionModule,
     MatToolbarModule,

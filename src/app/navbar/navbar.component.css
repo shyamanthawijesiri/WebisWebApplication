@@ -17,18 +17,24 @@ li{
 
 .mega-menu{
 
-  border-radius: 10px;
-  width: 800px;
+  margin-top: 10px;
+  width: 200px;
   overflow: hidden;
   padding: 10px;
+  background-color:rgb(185, 185, 185);
+
+  border:white solid 2px;
+
+
 }
 
-.mega-menu p a{
+.mega-menu  a{
   text-decoration: none;
+  color:black;
 
 }
-.mega-menu p a:hover{
- background-color: rgb(150, 184, 235);
+.mega-menu  a:hover{
+ color: rgb(8, 104, 248);
 }
 
 #logout{

@@ -1,6 +1,6 @@
 <div class="row" style="margin-top: 57px">
   <!-- filter colom -->
-  <div class="col-2" style="background-color: rgb(238, 245, 255);border-right: solid white 2px;">
+  <div class="col-2" style="background-color:  rgb(230, 230, 230);border-right: solid white 2px;">
 
     <h4 class='text-center'>Filter By </h4><br>
 
@@ -41,16 +41,22 @@
           <div class="row card-group sub-catergory-course"  *ngIf="subCourse.id==null">
               <!-- loadedCourseVideo.cor -->
             <div class="col-4"  *ngFor="let video of loadedSubCourses.cor"  >
+
+
               <a [routerLink]="['/course',video._id]" >
-                  <div class="card" >
+              <div class="card" >
                       <img src={{video.url}} class="card-img-top" alt="...">
                       <div class="card-body">
                         <h5 class="card-title">{{video.name}}</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <p>{{video.description}}</p>
+                        <!-- <div style="text-align:center">
 
+                        </div> -->
+                        <star-rating value="5" checkedcolor="grey" uncheckedcolor="black" size="24px"    readonly="false" (rate)="onRate($event)"></star-rating>
                       </div>
                     </div>
-              </a>
+                    </a>
+
 
             </div>
 
@@ -64,8 +70,7 @@
                       <img src={{video.url}} class="card-img-top" alt="...">
                       <div class="card-body">
                         <h5 class="card-title">{{video.name}}</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-
+                        <p>{{video.description}}</p>
                       </div>
                     </div>
               </a>

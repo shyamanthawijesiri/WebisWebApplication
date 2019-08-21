@@ -5,6 +5,7 @@ import { SubcourseService } from '../services/subcourse.service';
 import { CourseService } from '../services/course.service';
 import { Course } from '../course.model';
 import { EventEmitter } from 'events';
+import { StarRatingComponent } from 'ng-starrating';
 
 
 @Component({
@@ -100,7 +101,13 @@ export class DisplaycoursesComponent implements OnInit {
     });
   }
 
+  onRate($event:{oldValue:number, newValue:number, starRating:StarRatingComponent}) {
+    alert(`Old Value:${$event.oldValue},
+      New Value: ${$event.newValue},
+      Checked Color: ${$event.starRating.checkedcolor},
+      Unchecked Color: ${$event.starRating.uncheckedcolor}`);
 
+  }
 
 
 
