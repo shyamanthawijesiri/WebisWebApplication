@@ -7,13 +7,14 @@
     <form>
 
       <h6>Type</h6><br>
-      <mat-checkbox color="primary">Paid Course</mat-checkbox><br>
-      <mat-checkbox color="primary">Free Course</mat-checkbox>
+      <input type="checkbox" color="primary" id="paid" value="jjjj">Paid Course<br>
+      <mat-checkbox   color="primary" #myCheckbox value="Angular" (click)="onChecked()">Free Course</mat-checkbox>
+
       <hr>
       <h6>Skill Level</h6><br>
-      <mat-checkbox color="primary">Biginner</mat-checkbox><br>
-      <mat-checkbox color="primary">Intermediate</mat-checkbox><br>
-      <mat-checkbox color="primary">Advance</mat-checkbox>
+      <mat-checkbox color="primary" id="biginer">Biginner</mat-checkbox><br>
+      <mat-checkbox color="primary" >Intermediate</mat-checkbox><br>
+      <mat-checkbox color="primary" >Advance</mat-checkbox>
       <hr>
       <h6>Duration</h6><br>
       <mat-checkbox color="primary"> &lt; Month</mat-checkbox><br>
@@ -40,7 +41,7 @@
 
           <div class="row card-group sub-catergory-course"  *ngIf="subCourse.id==null">
               <!-- loadedCourseVideo.cor -->
-            <div class="col-4"  *ngFor="let video of loadedSubCourses.cor"  >
+            <div class="col-4"  *ngFor="let video of loadedSubCourses.cor | maincategories:name "  >
 
 
               <a [routerLink]="['/course',video._id]" >

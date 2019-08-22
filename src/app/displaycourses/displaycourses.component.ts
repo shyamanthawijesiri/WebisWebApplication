@@ -7,6 +7,8 @@ import { Course } from '../course.model';
 import { EventEmitter } from 'events';
 import { StarRatingComponent } from 'ng-starrating';
 
+import { MatCheckbox } from '@angular/material'
+import { ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-displaycourses',
@@ -108,9 +110,22 @@ export class DisplaycoursesComponent implements OnInit {
       Unchecked Color: ${$event.starRating.uncheckedcolor}`);
 
   }
+  @ViewChild('myCheckbox') private myCheckbox: MatCheckbox;
+ name: string;
+ checkedval = true;
+ onChecked(){
+   //this.x =(<> document.getElementById('free')).value;
+  if(this.checkedval){
 
-
-
+    this.name = this.myCheckbox.value;
+  // console.log((<HTMLInputElement> document.getElementById('free')));
+    console.log(this.name);
+    this.checkedval = false;
+  }else{
+    this.name = null;
+    this.checkedval = true;
+  }
+   }
 
 }
 
