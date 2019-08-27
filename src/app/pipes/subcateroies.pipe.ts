@@ -5,7 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class SubcateroiesPipe implements PipeTransform {
 
-  transform(value: any): any {
+  transform(value: any, catergory: string): any {
   //   const arr = [];
   //   for(const item of value) {
   //       console.log("hello")
@@ -15,7 +15,9 @@ export class SubcateroiesPipe implements PipeTransform {
 
   //   }
   //   return arr;
-  return value;
+
+  //return value;
+  return value.filter(value => value.catergoryName == catergory);
   }
 
 }
