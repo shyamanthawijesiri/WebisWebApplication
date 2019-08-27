@@ -7,6 +7,7 @@ import { AddcourseComponent } from './contentprovider/addcourse/addcourse.compon
 import { AccountComponent} from './user/account/account.component';
 import { CourseComponent } from './course/course.component';
 import { MycoursesComponent } from './user/mycourses/mycourses.component';
+import { AdminComponent } from './admin/admin.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -20,7 +21,8 @@ const routes: Routes = [
   {path: 'contentprovider', component: ContentproviderComponent},
   {path: 'addcourse', component: AddcourseComponent},
   {path: 'account', component: AccountComponent},
-  {path: 'mycourses', component: MycoursesComponent}
+  {path: 'mycourses', component: MycoursesComponent},
+  {path: 'admin', component: AdminComponent}
 ];
 
 @NgModule({

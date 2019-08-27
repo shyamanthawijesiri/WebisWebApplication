@@ -65,7 +65,7 @@
           </div>
 
           <div class="row card-group sub-catergory-course"*ngIf="subCourse.id!=null">
-            <div class="col-4"  *ngFor="let video of loadedCourseVideosub"  >
+            <div class="col-4"  *ngFor="let video of loadedCourseVideosub | maincategories:name"  >
               <a [routerLink]="['/course',video._id]"  >
                   <div class="card">
                       <img src={{video.url}} class="card-img-top" alt="...">
