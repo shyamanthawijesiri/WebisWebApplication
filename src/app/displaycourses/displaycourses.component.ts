@@ -111,17 +111,17 @@ export class DisplaycoursesComponent implements OnInit {
 
   }
   @ViewChild('myCheckbox') private myCheckbox: MatCheckbox;
- name: string;
- checkedval = true;
- onChecked(){
-   //this.x =(<> document.getElementById('free')).value;
-  if(this.checkedval){
+   name: string;
+   checkedval = true;
+  onChecked() {
+   // this.x =(<> document.getElementById('free')).value;
+  if (this.checkedval) {
 
     this.name = this.myCheckbox.value;
   // console.log((<HTMLInputElement> document.getElementById('free')));
     console.log(this.name);
     this.checkedval = false;
-  }else{
+  } else {
     this.name = null;
     this.checkedval = true;
   }

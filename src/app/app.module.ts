@@ -31,6 +31,8 @@ import { CourseComponent } from './course/course.component';
 import { MaincategoriesPipe } from './pipes/maincategories.pipe';
 import { SubcateroiesPipe } from './pipes/subcateroies.pipe';
 import { AdminComponent } from './admin/admin.component';
+import { RecentAddedCourseComponent } from './admin/recent-added-course/recent-added-course.component';
+import { UserComponent } from './admin/user/user.component';
 
 export function tokenGetter() {
   return localStorage.getItem('id_token');
@@ -50,7 +52,9 @@ export function tokenGetter() {
     AccountComponent,
     MaincategoriesPipe,
     CourseComponent,
-    AdminComponent
+    AdminComponent,
+    RecentAddedCourseComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,

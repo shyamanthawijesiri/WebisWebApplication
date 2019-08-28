@@ -8,6 +8,8 @@ import { SubcatergoryService } from '../services/subcatergory.service';
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent implements OnInit {
+
+  constructor(private catergoryService: CatergoryService,private subCatergoryService: SubcatergoryService) { }
    loadedCatergory:any;
    loadedSubcatergory:any;
 
@@ -15,9 +17,9 @@ export class AdminComponent implements OnInit {
    changeCatergory: string;
    subCatergory: any;
 
-   isChange: boolean = false;
 
-  constructor(private catergoryService: CatergoryService,private subCatergoryService: SubcatergoryService) { }
+    whenClicked = [false];
+    whensub = [false, false];
 
   ngOnInit() {
 
@@ -87,7 +89,22 @@ export class AdminComponent implements OnInit {
 
   }
 
-  change(){
-    this.isChange = true;
+  updateCatergory(id: string){
+    const catergory ={
+      catergoryName: this.changeCatergory
+    }
+    this.catergoryService.updateCatergory(catergory,id).subscribe(res =>{
+      if(res.state){
+        console.log('update ok');
+      }else{
+        console.log('update failed');
+      }
+    })
+
   }
+
+
+tracked(item, index){
+  return index;
+}
 }

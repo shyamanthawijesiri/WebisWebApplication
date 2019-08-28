@@ -9,9 +9,16 @@
   </div>
   <div class="col-9">
     <div class="tab-content" id="v-pills-tabContent">
-      <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">...</div>
-      <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">...</div>
-      <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">...</div>
+      <!-- -----------------------------------------------------------Recent Added Course----------------------------------------------------------------------- -->
+
+      <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+          <app-recent-added-course></app-recent-added-course>
+      </div>
+      <!-- ----------------------------------------------------------End Recent Added Course----------------------------------------------------------------------- -->
+
+      <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab"></div>
+      <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab"><app-user></app-user></div>
+
       <!-- -----------------------------------------------------------Add Catergory----------------------------------------------------------------------- -->
       <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab" style="margin-top: 57px;">
         <div class="row">
@@ -21,15 +28,23 @@
           <div class="col-6">
              <h3>Catergories</h3>
 
-            <ul class="list-group" *ngFor="let catergory of loadedCatergory" >
+            <ul class="list-group" *ngFor="let catergory of loadedCatergory;let i = index;trackBy: tracked" >
               <li class="list-group-item " aria-disabled="true">
                 <span class="btn btn-outline-danger" (click)="deleteCatergory(catergory.name)" style="float: right">remove</span>
-                <span class="btn btn-outline-success"  style="float: right" (click)="change()">change</span>
-                {{catergory.name}}
-                <input type="text" class="form-control" [(ngModel)]="changeCatergory" *ngIf="isChange">
+                <span class="btn btn-outline-success"  style="float: right; margin-right: 10px;" (click)="whenClicked[i]=!whenClicked[i]">change</span>
+                {{catergory.name}}+" "+{{whenClicked[i]}}
+                <!-- <input type="text" class="form-control" [(ngModel)]="changeCatergory" *ngIf="whenClicked[i]" > -->
+
+                <div class="input-group " *ngIf="whenClicked[i]" style="margin-top: 20px;">
+                  <input type="text" class="form-control" placeholder="Catergory Name" aria-describedby="button-addon2" [(ngModel)]="changeCatergory" >
+                  <div class="input-group-append">
+                    <button class="btn btn-outline-primary" type="button" id="button-addon2" (click)="updateCatergory(catergory._id)">save</button>
+                  </div>
+                </div>
               </li>
 
             </ul>
+
 
             <div class='hr'>
                 <span class='hr-title'>Add A Catergory</span>
@@ -53,14 +68,25 @@
           <div class="col-6">
             <h3>Sub-Catergories</h3>
               <!-- ********************************* sub-catergory ***************************************** -->
-            <ul class="list-group" *ngFor="let catergory of loadedCatergory" >
-              <li class="list-group-item disabled" aria-disabled="true" style="color: red;">{{catergory.name}}</li>
+            <ul class="list-group" *ngFor="let catergory of loadedCatergory;let i = index" >
+              <li class="list-group-item disabled" aria-disabled="true" style="color: red;">{{catergory.name}}{{i}}</li>
 
-              <ul class="list-group" *ngFor="let subcatergory of loadedSubcatergory | subcateroies:catergory.name " >
-                <li class="list-group-item " aria-disabled="true">{{subcatergory.name}} <span class="btn btn-outline-danger" (click)="deleteSubcatergory(subcatergory.name)" style="float: right">remove</span></li>
+              <ul class="list-group" *ngFor="let subcatergory of loadedSubcatergory | subcateroies:catergory.name ;let k = index" >
+                <li class="list-group-item " aria-disabled="true">{{subcatergory.name}}+ +{{whensub[i]}}
+                  <span class="btn btn-outline-danger" (click)="deleteSubcatergory(subcatergory.name)" style="float: right">remove</span>
+                  <span class="btn btn-outline-success"  style="float: right; margin-right: 10px;" (click)="whensub[k]=!whensub[k]">change</span>
 
+                  <div class="input-group " *ngIf="whensub[k]" style="margin-top: 20px;">
+                      <input type="text" class="form-control" placeholder="Catergory Name" aria-describedby="button-addon2" [(ngModel)]="changeCatergory" >
+                      <div class="input-group-append">
+                        <button class="btn btn-outline-primary" type="button" id="button-addon2" (click)="updateCatergory(catergory._id)">save</button>
+                      </div>
+                    </div>
+                </li>
               </ul>
+
             </ul>
+
             <div class='hr'>
                 <span class='hr-title'>Add A Sub-Catergory</span>
             </div>

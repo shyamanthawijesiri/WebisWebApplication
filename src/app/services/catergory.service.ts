@@ -19,6 +19,10 @@ export class CatergoryService {
   }
 
   deleteCatergory(catergory){
-    return this.http.delete('http://localhost:3000/catergory/delete/'+catergory);
+    return this.http.delete('http://localhost:3000/catergory/delete/'+ catergory);
+   }
+
+   updateCatergory(catergory,id: string){
+    return this.http.put('http://localhost:3000/catergory/updateCatergory/' + id, catergory).pipe(map((res:any)=>res));
    }
 }
