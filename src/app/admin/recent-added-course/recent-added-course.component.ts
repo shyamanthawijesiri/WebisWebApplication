@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output,EventEmitter } from '@angular/core';
 import { CourseService } from '../../services/course.service';
+
 
 @Component({
   selector: 'app-recent-added-course',
@@ -8,14 +9,23 @@ import { CourseService } from '../../services/course.service';
 })
 export class RecentAddedCourseComponent implements OnInit {
    denyCourse: any;
+   objectKeys = Object.keys;
+   size: number;
+
+   @Output() passSize = new EventEmitter<number>();
   constructor(private courseService: CourseService) { }
 
   ngOnInit() {
     this.courseService.getDenyPermissionCourse().subscribe(res =>{
       this.denyCourse = res;
-     console.log(res);
-    })
+      console.log(res);
+       //get object size
+      this.size = this.objectKeys(res).length;
+      //send size to parent
+      this.passSize.emit(this.size);
+    });
   }
+
 
   givePermission(id: string){
     const permission = {

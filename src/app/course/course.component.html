@@ -3,8 +3,9 @@
   <div class="col-sm-3 col-md-2 image" >
     <img src="{{loadedCourse.url}}">
     <div *ngIf="userService.loggedIn()">
+      <!-- <button type="submit" class="btn btn-primary" (click)="onRegisterCourse()" [routerLink]="['/course',course.id,'enrolled']" routerLinkActive="router-link-active" >Enroll</button> -->
+      <button type="submit" class="btn btn-primary"  [routerLink]="['/course',course,'enrolled']" routerLinkActive="router-link-active" >Enroll</button>
 
-      <button type="submit" class="btn btn-primary" (click)="onRegisterCourse()">Enroll</button>
     </div>
   </div>
   <div class="col-sm-9 col-md-10 col-details">
@@ -48,3 +49,5 @@
 
 
 </div>
+
+

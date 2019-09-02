@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { course } from './addcourse.model';
+import { SubcatergoryService } from 'src/app/services/subcatergory.service';
+import { CatergoryService } from 'src/app/services/catergory.service';
 
 
 
@@ -10,16 +12,28 @@ import { course } from './addcourse.model';
   styleUrls: ['./addcourse.component.css']
 })
 export class AddcourseComponent implements OnInit {
-
+ loadedCatergory: any;
+ loadedSubcatergory: any;
+ catergory: any;
 //  course = new course();
 //    dataArray =[];
 
    contentForm: FormGroup;
 
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private subCatergoryService: SubcatergoryService, private catergoryService: CatergoryService) { }
 
   ngOnInit() {
+
+    this.subCatergoryService.getSubcatergory().subscribe(res =>{
+      this.loadedSubcatergory = res;
+      console.log(res);
+    });
+    this.catergoryService.getCatergory().subscribe(res =>{
+      this.loadedCatergory = res;
+      console.log(res);
+    });
+
     this.contentForm = this.fb.group({
       topic: new FormArray([]),
       file : new FormArray([])

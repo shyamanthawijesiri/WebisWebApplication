@@ -65,7 +65,7 @@ registerUserToCourse(course, id: string){
 
 
    //headers.append('Authorization',localStorage.getItem('id_token'));
-  return this.http.post('http://localhost:3000/course/registerCourse/'+id,course,httpOption).pipe(map((res:any)=>res));
+  return this.http.post('http://localhost:3000/course/registerCourse/' + id, course, httpOption).pipe(map((res: any) => res));
 
 
 }
@@ -75,8 +75,13 @@ getDenyPermissionCourse(){
 }
 
 givePermission(permission, id: string){
-  return this.http.put('http://localhost:3000/course/givePermissionOrNot/' + id, permission).pipe(map((res:any)=>res));
+  return this.http.put('http://localhost:3000/course/givePermissionOrNot/' + id, permission).pipe(map((res: any) => res));
 }
 
+
+giveRate(id: string, rate){
+  return this.http.put('http://localhost:3000/course/rating/' + id, rate).pipe(map((res: any) => res));
+}
+ rating = new EventEmitter<string>();
 }
 

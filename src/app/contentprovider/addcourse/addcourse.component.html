@@ -8,13 +8,7 @@
       <input type="text" class="form-control" id="courseTitle"  >
     </div>
   </div>
-  <div class="row">
 
-      <div class="form-group col-sm">
-        <label for="auther">Auther</label>
-        <input type="text" class="form-control" id="auther"  >
-      </div>
-    </div>
 
   <div class="row">
     <div class="form-group col-sm">
@@ -22,15 +16,65 @@
       <textarea class="form-control" id="description" rows="4"></textarea>
     </div>
   </div>
+
   <div class="row">
-    <div class="form-group col-sm">
+    <div class="form-group col-sm-6">
+      <h6>Catergory</h6>
+        <div class="input-group" style="margin-bottom:20px;" >
 
+            <select class="custom-select"  [(ngModel)]="catergory">
 
+              <option *ngFor="let catergory of loadedCatergory; let i=index;" [ngValue]="catergory.name"  >{{catergory.name}}</option>
 
-
-
-        </div>
+            </select>
       </div>
+    </div>
+    <div class="form-group col-sm-6">
+        <h6>Sub-Catergory</h6>
+        <div class="input-group" style="margin-bottom:20px; " >
+
+            <select class="custom-select" >
+
+              <option *ngFor="let subcatergory of loadedSubcatergory  let i=index;" [ngValue]="subcatergory.name"  >{{subcatergory.name}}</option>
+
+            </select>
+      </div>
+      </div>
+  </div>
+  <div class="row">
+    <div class="form-group col-sm-4">
+      <!-- type -->
+      <h6>Course Type</h6>
+      <div class="input-group" style="margin-bottom:20px;" >
+        <select class="custom-select" id="inputGroupSelect04" >
+          <option  >Paid</option>
+          <option  >Free</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group col-sm-4">
+      <!-- skill level -->
+      <h6>Skill Level</h6>
+      <div class="input-group" style="margin-bottom:20px;" >
+        <select class="custom-select" id="inputGroupSelect04" >
+          <option  >beginner</option>
+          <option  >intermediate</option>
+          <option  >advance</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group col-sm-4">
+      <!-- duration -->
+      <h6>Duration</h6>
+      <div class="input-group" style="margin-bottom:20px;" >
+        <select class="custom-select" id="inputGroupSelect04" >
+          <option  >lessmonth</option>
+          <option  >1-3month</option>
+          <option  >3+month</option>
+        </select>
+      </div>
+    </div>
+  </div>
 
       <div class="row">
     <div class="col-sm">

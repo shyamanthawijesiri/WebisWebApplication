@@ -5,7 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class MaincategoriesPipe implements PipeTransform {
 
-  transform(value: any, nam: string): any {
+  transform(value: any, nam: string,nam2: string): any {
     // const arr = [];
     // console.log("mainpipe")
     // console.log(typeof(value))
@@ -17,10 +17,10 @@ export class MaincategoriesPipe implements PipeTransform {
 
     // }
     // return arr;
-    if(nam == null){
+    if(nam == null && nam2 == null){
       return value;
     }
-  return value.filter(value => value.name == nam);
+  return value.filter(value => value.name == nam || value.name == nam2);
    // return value.substr(0,80) + '.......';
   }
 

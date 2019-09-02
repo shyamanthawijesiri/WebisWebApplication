@@ -14,20 +14,21 @@ import { from } from 'rxjs';
 export class CourseComponent implements OnInit {
 
   loadedCourse: any;
-  course: {id: string}
+  //course: {id: string}
   pass: any;
+  course: string
 
   courseId: any;
   userId: any;
   constructor(private activatedRoute: ActivatedRoute, private courseService: CourseService, private userService: UserService) { }
 
   ngOnInit() {
-    this.course = {
-      id: this.activatedRoute.snapshot.paramMap.get('id')
-    };
+    // this.course = {
+    // };
+    this.course = this.activatedRoute.snapshot.paramMap.get('id')
     this.activatedRoute.params.subscribe(
       (params: Params) => {
-        this.course.id = params['id'];
+        this.course = params['id'];
       }
     );
 
@@ -38,22 +39,22 @@ export class CourseComponent implements OnInit {
     //   }
     // );
     //get course details
-    this.courseService.displaycourse(this.course.id).subscribe(response =>{
+    this.courseService.displaycourse(this.course).subscribe(response =>{
       this.loadedCourse=response;
     })
 
-
+    this.courseService.rating.emit(this.course);
 
   }
 
   onRegisterCourse(){
     const course ={
       userId: this.pass.id,
-      courseId: this.course.id
+      courseId: this.course
     }
     console.log('success');
     console.log(course);
-    this.courseService.registerUserToCourse(course,this.course.id).subscribe(res =>{
+    this.courseService.registerUserToCourse(course,this.course).subscribe(res =>{
      if(res.state){
        console.log('succefully register to course');
      }else{

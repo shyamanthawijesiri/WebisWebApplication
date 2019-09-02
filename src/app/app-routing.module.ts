@@ -8,11 +8,16 @@ import { AccountComponent} from './user/account/account.component';
 import { CourseComponent } from './course/course.component';
 import { MycoursesComponent } from './user/mycourses/mycourses.component';
 import { AdminComponent } from './admin/admin.component';
+import { EnrolledCourseComponent } from './course/enrolled-course/enrolled-course.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
   {path: 'home', component: HomeComponent},
+  {path: 'enrolled', component:  EnrolledCourseComponent},
   {path: 'course/:id', component: CourseComponent},
+  {path: 'course/:id/enrolled', component: EnrolledCourseComponent},
+
+//{path: 'course/:id', component: CourseComponent},
 
   {path: 'displaycourses', component: DisplaycoursesComponent},
   {path: 'displaycourses/:catergory', component: DisplaycoursesComponent},

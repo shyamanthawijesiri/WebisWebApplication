@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ɵregisterModuleFactory } from '@angular/core';
 import { CatergoryService } from '../services/catergory.service';
 import { SubcatergoryService } from '../services/subcatergory.service';
+
 
 @Component({
   selector: 'app-admin',
@@ -8,30 +9,54 @@ import { SubcatergoryService } from '../services/subcatergory.service';
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent implements OnInit {
+  whensub2 = [[],[]];
+  constructor(private catergoryService: CatergoryService,private subCatergoryService: SubcatergoryService) {
 
-  constructor(private catergoryService: CatergoryService,private subCatergoryService: SubcatergoryService) { }
+  }
    loadedCatergory:any;
    loadedSubcatergory:any;
 
    catergory: string;
    changeCatergory: string;
    subCatergory: any;
+   size: number;
+   catsize: number;
+   objectKeys = Object.keys;
 
+    whenClicked = [];
+    whensub = [];
 
-    whenClicked = [false];
-    whensub = [false, false];
+   // i = 0;
 
   ngOnInit() {
 
+    //console.log(this.whenClicked[1])
+        // this.whensub2[0].push(true);
+    console.log("clicked");
+   // this.whensub2[0].push(false);
+    console.log(this.whensub2[0][0])
+    console.log(this.whensub2[1][0])
     this.catergoryService.getCatergory().subscribe(res =>{
       this.loadedCatergory = res;
-      console.log(res);
+      this.catsize = this.objectKeys(res).length;
+      for(let i=0; i<this.catsize; i++){
+
+
+        this.whensub2.push([false]);
+
+        }
+      console.log(this.loadedCatergory);
     });
 
     this.subCatergoryService.getSubcatergory().subscribe(res =>{
       this.loadedSubcatergory = res;
       console.log(res);
     });
+
+  }
+  // get recent course size
+  receiveSize($event) {
+    this.size = $event;
 
   }
 
@@ -107,4 +132,6 @@ export class AdminComponent implements OnInit {
 tracked(item, index){
   return index;
 }
+
+
 }

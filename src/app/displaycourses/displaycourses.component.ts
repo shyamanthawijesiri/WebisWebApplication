@@ -110,22 +110,132 @@ export class DisplaycoursesComponent implements OnInit {
       Unchecked Color: ${$event.starRating.uncheckedcolor}`);
 
   }
-  @ViewChild('myCheckbox') private myCheckbox: MatCheckbox;
-   name: string;
-   checkedval = true;
-  onChecked() {
-   // this.x =(<> document.getElementById('free')).value;
-  if (this.checkedval) {
 
-    this.name = this.myCheckbox.value;
-  // console.log((<HTMLInputElement> document.getElementById('free')));
-    console.log(this.name);
-    this.checkedval = false;
+  @ViewChild('fPaid') private fPaid: MatCheckbox;
+  @ViewChild('fFree') private fFree: MatCheckbox;
+
+   paid: string;
+   free:string;
+   checkedpaid = true;
+   checkedfree = true;
+
+// filter type
+  onPaid() {
+  if (this.checkedpaid) {
+
+    this.paid = this.fPaid.value;
+
+    //console.log(this.name);
+    this.checkedpaid = false;
   } else {
-    this.name = null;
-    this.checkedval = true;
+    this.paid = null;
+    this.checkedpaid = true;
   }
-   }
+  }
+
+   onFree() {
+    if (this.checkedfree) {
+
+      this.free = this.fFree.value;
+
+      //console.log(this.name);
+      this.checkedfree = false;
+    } else {
+      this.free = null;
+      this.checkedfree = true;
+    }
+    }
+
+    // filter Skill lever
+    @ViewChild('fBeginner') private fBeginner: MatCheckbox;
+    @ViewChild('fIntermediate') private fIntermediate: MatCheckbox;
+    @ViewChild('fAdvance') private fAdvance: MatCheckbox;
+
+    beginner: string;
+    intermediate: string;
+    advance: string;
+
+    checkedbeginner = true;
+    checkedintermediate = true;
+    checkedadvance = true;
+
+    onBeginner() {
+      if (this.checkedbeginner) {
+
+        this.beginner = this.fBeginner.value;
+
+        this.checkedbeginner = false;
+      } else {
+        this.beginner = null;
+        this.checkedbeginner = true;
+      }
+      }
+
+      onIntermediate() {
+        if (this.checkedintermediate) {
+
+          this.intermediate = this.fIntermediate.value;
+          this.checkedintermediate = false;
+        } else {
+          this.intermediate = null;
+          this.checkedintermediate = true;
+        }
+        }
+
+        onAdvance() {
+          if (this.checkedadvance) {
+
+            this.advance = this.fAdvance.value;
+            this.checkedadvance = false;
+          } else {
+            this.advance = null;
+            this.checkedadvance = true;
+          }
+          }
+
+          // filter duration
+
+          @ViewChild('flessMonth') private flessMonth: MatCheckbox;
+          @ViewChild('fless3Month') private fless3Month: MatCheckbox;
+          @ViewChild('fmore3Month') private fmore3Month: MatCheckbox;
+
+          lessmonth: string;
+          less3month: string;
+          more3month: string;
+
+          checkedlessmonth = true;
+          checkedless3month = true;
+          checkedmore3month = true;
+
+          onLessMonth() {
+            if (this.checkedlessmonth) {
+              this.lessmonth = this.flessMonth.value;
+              this.checkedlessmonth = false;
+            } else {
+              this.lessmonth = null;
+              this.checkedlessmonth = true;
+            }
+          }
+
+            onLess3Month() {
+              if (this.checkedless3month) {
+                this.less3month = this.fless3Month.value;
+                this.checkedless3month = false;
+              } else {
+                this.less3month = null;
+                this.checkedless3month = true;
+              }
+            }
+            onMore3Month() {
+              if (this.checkedmore3month) {
+                this.more3month = this.fmore3Month.value;
+                this.checkedmore3month = false;
+              } else {
+                this.more3month = null;
+                this.checkedmore3month = true;
+              }
+              }
+
 
 }
 

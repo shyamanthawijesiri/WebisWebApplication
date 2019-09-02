@@ -7,19 +7,20 @@
     <form>
 
       <h6>Type</h6><br>
-      <input type="checkbox" color="primary" id="paid" value="jjjj">Paid Course<br>
-      <mat-checkbox   color="primary" #myCheckbox value="Angular" (click)="onChecked()">Free Course</mat-checkbox>
+
+      <mat-checkbox   color="primary" #fPaid value="paid" (click)="onPaid()">paid Course</mat-checkbox>
+      <mat-checkbox   color="primary" #fFree value="free" (click)="onFree()">Free Course</mat-checkbox>
 
       <hr>
       <h6>Skill Level</h6><br>
-      <mat-checkbox color="primary" id="biginer">Biginner</mat-checkbox><br>
-      <mat-checkbox color="primary" >Intermediate</mat-checkbox><br>
-      <mat-checkbox color="primary" >Advance</mat-checkbox>
+      <mat-checkbox color="primary" #fbeginner value="beginner" (click)="onBeginner()">Beginner</mat-checkbox><br>
+      <mat-checkbox color="primary" #fintermediate value="intermediate" (click)="onIntermediate()">Intermediate</mat-checkbox><br>
+      <mat-checkbox color="primary" #fadvance vlaue="advance" (click)="onAdvance()">Advance</mat-checkbox>
       <hr>
       <h6>Duration</h6><br>
-      <mat-checkbox color="primary"> &lt; Month</mat-checkbox><br>
-      <mat-checkbox color="primary">1 - 3 Month</mat-checkbox><br>
-      <mat-checkbox color="primary">3+ Month</mat-checkbox>
+      <mat-checkbox color="primary" #flessMonth value="lessmonth" (click)="onLessMonth()"> &lt; Month</mat-checkbox><br>
+      <mat-checkbox color="primary" #fless3Month value="1-3month" (click)="onLess3Month()">1 - 3 Month</mat-checkbox><br>
+      <mat-checkbox color="primary" #fmore3Month value="3+month" (click)="onMore3Month()">3+ Month</mat-checkbox>
 
     </form>
 
@@ -41,7 +42,7 @@
 
           <div class="row card-group sub-catergory-course"  *ngIf="subCourse.id==null">
               <!-- loadedCourseVideo.cor -->
-            <div class="col-4"  *ngFor="let video of loadedSubCourses.cor | maincategories:name "  >
+            <div class="col-4"  *ngFor="let video of loadedSubCourses.cor | type:paid:free | skillLevel:beginner:intermediate:advance | duration:lessmonth:less3month:more3month "  >
 
 
               <a [routerLink]="['/course',video._id]" >
@@ -53,7 +54,7 @@
                         <!-- <div style="text-align:center">
 
                         </div> -->
-                        <star-rating value="5" checkedcolor="grey" uncheckedcolor="black" size="24px"    readonly="false" (rate)="onRate($event)"></star-rating>
+                        <star-rating value="3" checkedcolor="grey" uncheckedcolor="black" size="24px"    readonly="true" (rate)="onRate($event)"></star-rating>
                       </div>
                     </div>
                     </a>
@@ -65,7 +66,7 @@
           </div>
 
           <div class="row card-group sub-catergory-course"*ngIf="subCourse.id!=null">
-            <div class="col-4"  *ngFor="let video of loadedCourseVideosub | maincategories:name"  >
+            <div class="col-4"  *ngFor="let video of loadedCourseVideosub |  type:paid:free | skillLevel:beginner:intermediate:advance | duration:lessmonth:less3month:more3month "  >
               <a [routerLink]="['/course',video._id]"  >
                   <div class="card">
                       <img src={{video.url}} class="card-img-top" alt="...">
