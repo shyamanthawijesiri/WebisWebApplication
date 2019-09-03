@@ -3,6 +3,7 @@ import { FormArray, FormBuilder, FormGroup, Validators, FormControl } from '@ang
 import { course } from './addcourse.model';
 import { SubcatergoryService } from 'src/app/services/subcatergory.service';
 import { CatergoryService } from 'src/app/services/catergory.service';
+import { CourseService } from 'src/app/services/course.service';
 
 
 
@@ -21,20 +22,27 @@ export class AddcourseComponent implements OnInit {
    contentForm: FormGroup;
 
 
-  constructor(private fb: FormBuilder, private subCatergoryService: SubcatergoryService, private catergoryService: CatergoryService) { }
+  constructor(private fb: FormBuilder, private subCatergoryService: SubcatergoryService, private catergoryService: CatergoryService, private courseService: CourseService) { }
 
   ngOnInit() {
-
     this.subCatergoryService.getSubcatergory().subscribe(res =>{
       this.loadedSubcatergory = res;
       console.log(res);
+
     });
+
     this.catergoryService.getCatergory().subscribe(res =>{
       this.loadedCatergory = res;
       console.log(res);
     });
 
     this.contentForm = this.fb.group({
+      name: ['',Validators.required],
+      description: ['',Validators.required],
+      catergory: ['',Validators.required],
+      subCatergory: ['',Validators.required],
+      type: ['',Validators.required],
+      skillLevel: ['',Validators.required],
       topic: new FormArray([]),
       file : new FormArray([])
     });
@@ -50,6 +58,7 @@ export class AddcourseComponent implements OnInit {
   //   this.course = new course();
   //  this.dataArray.push(this.course);
   }
+
 
   onDelete(i: number) {
     (this.contentForm.get('topic') as FormArray).removeAt(i);
@@ -115,6 +124,18 @@ onSubmit(){
   //console.log(this.userForm.get('subTopic').value)
 console.log(this.contentForm.get('topic').value);
 console.log(this.contentForm.get('file').value)
+console.log(this.contentForm.get('type').value)
+console.log("course")
+console.log(this.contentForm.value);
+this.courseService.Addcourse(this.contentForm.value).subscribe(res => {
+  if(res.state){
+    console.log('add ok')
+    console.log(res);
+  }else{
+    console.log('add failed')
+  }
+  });
+
 }
 
 }

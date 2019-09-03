@@ -17,6 +17,7 @@ export class SubcateroiesPipe implements PipeTransform {
   //   return arr;
 
   //return value;
+  if(!value) return;
   return value.filter(value => value.catergoryName == catergory);
   }
 

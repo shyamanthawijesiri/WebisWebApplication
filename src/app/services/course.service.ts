@@ -4,7 +4,7 @@ import { catchError, retry } from 'rxjs/operators';
 import {map} from 'rxjs/operators';
 import { Course } from '../course.model';
 import {HttpClient,HttpClientModule,HttpHeaders, HttpErrorResponse} from '@angular/common/http';
-import { DisplaycoursesComponent } from '../displaycourses/displaycourses.component';
+
 
 @Injectable({
   providedIn: 'root'
@@ -83,5 +83,14 @@ giveRate(id: string, rate){
   return this.http.put('http://localhost:3000/course/rating/' + id, rate).pipe(map((res: any) => res));
 }
  rating = new EventEmitter<string>();
+
+
+ Addcourse(course){
+  return this.http.post('http://localhost:3000/course/put', course).pipe(map((res: any) => res))
+ }
+
+
+
 }
+
 
