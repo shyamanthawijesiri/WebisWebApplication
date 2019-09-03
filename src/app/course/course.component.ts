@@ -41,6 +41,7 @@ export class CourseComponent implements OnInit {
     //get course details
     this.courseService.displaycourse(this.course).subscribe(response =>{
       this.loadedCourse=response;
+      console.log(response)
     })
 
     this.courseService.rating.emit(this.course);

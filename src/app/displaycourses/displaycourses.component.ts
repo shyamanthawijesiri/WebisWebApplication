@@ -16,14 +16,52 @@ import { ViewChild } from '@angular/core';
   styleUrls: ['./displaycourses.component.css']
 })
 export class DisplaycoursesComponent implements OnInit {
+
+
+
   loadedSubCourses:any // Subcourses[];
   loadedCourseVideo: any
   loadedCourseVideosub: any
 
-
-
   mainCourse: { id: string }
   subCourse: {id: string}
+
+  // filter Skill level
+  @ViewChild('fBeginner') private fBeginner: MatCheckbox;
+  @ViewChild('fIntermediate') private fIntermediate: MatCheckbox;
+  @ViewChild('fAdvance') private fAdvance: MatCheckbox;
+
+    beginner: string;
+    intermediate: string;
+    advance: string;
+
+    checkedbeginner = true;
+    checkedintermediate = true;
+    checkedadvance = true;
+
+  // filter type
+ @ViewChild('fPaid') private fPaid: MatCheckbox;
+ @ViewChild('fFree') private fFree: MatCheckbox;
+
+  paid: string;
+  free: string;
+
+  checkedpaid = true;
+  checkedfree = true;
+
+   // filter duration
+
+   @ViewChild('fLessMonth') private fLessMonth: MatCheckbox;
+   @ViewChild('fLess3Month') private fLess3Month: MatCheckbox;
+   @ViewChild('fMore3Month') private fMore3Month: MatCheckbox;
+
+   lessmonth: string;
+   less3month: string;
+   more3month: string;
+
+   checkedlessmonth = true;
+   checkedless3month = true;
+   checkedmore3month = true;
 
 
   constructor(private activatedRoute: ActivatedRoute, private subCourseService: SubcourseService, private courseService: CourseService ) { }
@@ -85,19 +123,17 @@ export class DisplaycoursesComponent implements OnInit {
     //display videos according to sub catergories
 
     this.courseService.getCourseVideossub(this.mainCourse.id,this.subCourse.id).subscribe(response =>{
-      this.loadedCourseVideosub=response;
-      console.log("subcourese");
+      this.loadedCourseVideosub = response;
       console.log(response);
     });
 
 
   }
 
-  //display videos according to sub catergories
+  // display videos according to sub catergories
   onSubCourse(mCourse: string, sCourse: string){
     this.courseService.getCourseVideossub(mCourse,sCourse).subscribe(response =>{
-      this.loadedCourseVideosub=response;
-      console.log("subcourese");
+      this.loadedCourseVideosub = response;
       console.log(this.subCourse.id);
       console.log(response);
     });
@@ -111,13 +147,7 @@ export class DisplaycoursesComponent implements OnInit {
 
   }
 
-  @ViewChild('fPaid') private fPaid: MatCheckbox;
-  @ViewChild('fFree') private fFree: MatCheckbox;
 
-   paid: string;
-   free:string;
-   checkedpaid = true;
-   checkedfree = true;
 
 // filter type
   onPaid() {
@@ -146,18 +176,11 @@ export class DisplaycoursesComponent implements OnInit {
     }
     }
 
-    // filter Skill lever
-    @ViewChild('fBeginner') private fBeginner: MatCheckbox;
-    @ViewChild('fIntermediate') private fIntermediate: MatCheckbox;
-    @ViewChild('fAdvance') private fAdvance: MatCheckbox;
 
-    beginner: string;
-    intermediate: string;
-    advance: string;
 
-    checkedbeginner = true;
-    checkedintermediate = true;
-    checkedadvance = true;
+
+
+
 
     onBeginner() {
       if (this.checkedbeginner) {
@@ -181,7 +204,6 @@ export class DisplaycoursesComponent implements OnInit {
           this.checkedintermediate = true;
         }
         }
-
         onAdvance() {
           if (this.checkedadvance) {
 
@@ -193,23 +215,10 @@ export class DisplaycoursesComponent implements OnInit {
           }
           }
 
-          // filter duration
-
-          @ViewChild('flessMonth') private flessMonth: MatCheckbox;
-          @ViewChild('fless3Month') private fless3Month: MatCheckbox;
-          @ViewChild('fmore3Month') private fmore3Month: MatCheckbox;
-
-          lessmonth: string;
-          less3month: string;
-          more3month: string;
-
-          checkedlessmonth = true;
-          checkedless3month = true;
-          checkedmore3month = true;
 
           onLessMonth() {
             if (this.checkedlessmonth) {
-              this.lessmonth = this.flessMonth.value;
+              this.lessmonth = this.fLessMonth.value;
               this.checkedlessmonth = false;
             } else {
               this.lessmonth = null;
@@ -219,7 +228,7 @@ export class DisplaycoursesComponent implements OnInit {
 
             onLess3Month() {
               if (this.checkedless3month) {
-                this.less3month = this.fless3Month.value;
+                this.less3month = this.fLess3Month.value;
                 this.checkedless3month = false;
               } else {
                 this.less3month = null;
@@ -228,7 +237,7 @@ export class DisplaycoursesComponent implements OnInit {
             }
             onMore3Month() {
               if (this.checkedmore3month) {
-                this.more3month = this.fmore3Month.value;
+                this.more3month = this.fMore3Month.value;
                 this.checkedmore3month = false;
               } else {
                 this.more3month = null;
