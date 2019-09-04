@@ -59,18 +59,33 @@ export class AddcourseComponent implements OnInit {
   //  this.dataArray.push(this.course);
   }
 
+  whenClicked = []
+  whenText = []
+  k:number = -1;
 
+text: string = 'upload';
+ upClick(){
+  if(this.text === 'upload') {
+    this.text = 'uploaded'
+  }
+ }
   onDelete(i: number) {
     (this.contentForm.get('topic') as FormArray).removeAt(i);
     (this.contentForm.get('file') as FormArray).removeAt(i);
   }
   onAdd() {
+
     const control = new FormControl(null, Validators.required);
-    const control2 = new FormControl(null, Validators.required);
+   // const control2 = new FormControl(null, Validators.required);
     (this.contentForm.get('topic') as FormArray).push(control);
-    (this.contentForm.get('file') as FormArray).push(control2);
+    //(this.contentForm.get('file') as FormArray).push(control2);
+    this.k++;
   }
 
+  upload(){
+    const control2 = new FormControl('id', Validators.required);
+    (this.contentForm.get('file') as FormArray).push(control2);
+  }
 
 
 

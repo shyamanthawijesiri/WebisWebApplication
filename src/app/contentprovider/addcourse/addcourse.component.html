@@ -1,4 +1,4 @@
-<form style="margin-top: 100px;" [formGroup]="contentForm" (ngSubmit)="onSubmit()" >
+<form style="margin-top: 100px;" [formGroup]="contentForm"  >
   <div class="container">
 
   <div class="row">
@@ -104,17 +104,30 @@
 
 
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-12">
+
         <div formArrayName="topic" class="form-group">
           <div class="form-group" *ngFor="let mc of contentForm.get('topic').controls; let i = index">
-              <input placeholder='Sub Topic {{i+1}}' [formControlName]="i" class="form-control">
+            <div class="row">
+
+              <div class="col-md-6">
+                  <input placeholder='Sub Topic {{i+1}}' [formControlName]="i" class="form-control">
 
 
+                </div>
+                <div class="col-md-4">
+                    <input type="file"  class="form-control">
+              </div>
+                <div class="col-md-2">
+                    <!-- <button    (click)="whenClicked[i] = false; whenClicked[i+1]=true" [disabled]="true">upload</button> -->
+                    <button     [disabled]="whenClicked[i]" (click)="whenClicked[i]=true;whenClicked[i+1]=false;whenText[i]='uploaded'; upClick()">{{whenText[i]}}</button>
 
+              </div>
             </div>
-            </div>
+          </div>
+        </div>
       </div>
-      <div class="col-md-2">
+      <!-- <div class="col-md-2">
         <div formArrayName="file" class="form-group">
           <div class="form-group" *ngFor="let mcq of contentForm.get('file').controls; let i = index">
               <input [formControlName]="i" class="form-control">
@@ -124,19 +137,21 @@
             </div>
 
           </div>
-      </div>
-      <div class="col-md-2">
+      </div> -->
+      <!-- <div class="col-md-2">
           <div formArrayName="topic" >
               <div class="form-group" *ngFor="let mcq of contentForm.get('topic').controls; let i = index">
                   <button class="btn btn-outline-danger" (click)="onDelete(i)"> Remove </button>
                 </div>
                 </div>
-            </div>
+            </div> -->
 
 
       </div>
 
-      <button class="btn btn-outline-primary" type="submit" style="margin-left: 15px;">Save</button>
+      <button  class="btn btn-outline-success"  (click)="whenClicked[0] = false">finished</button>
+      <button  class="btn btn-outline-success" (click)="onAdd();whenClicked[k]=true;whenText[k]='upload'" >Add Topic</button>
+      <button class="btn btn-outline-primary" (click)="onSubmit()" style="margin-left: 15px;">Save</button>
     </div>
     <!-- <div formArrayName="topic" >
       <div class="form-group" *ngFor="let mcq of contentForm.get('topic').controls; let i = index">
@@ -153,5 +168,4 @@
 
 
 </form>
-<button  class="btn btn-outline-success" (click)="onAdd()">Add Topic</button>
 
