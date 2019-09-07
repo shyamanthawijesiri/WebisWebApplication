@@ -5,6 +5,11 @@ import { SubcatergoryService } from 'src/app/services/subcatergory.service';
 import { CatergoryService } from 'src/app/services/catergory.service';
 import { CourseService } from 'src/app/services/course.service';
 
+import { AuthService } from 'angularx-social-login';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { FacebookLoginProvider, GoogleLoginProvider } from 'angularx-social-login';
+
+
 
 
 @Component({
@@ -15,16 +20,29 @@ import { CourseService } from 'src/app/services/course.service';
 export class AddcourseComponent implements OnInit {
  loadedCatergory: any;
  loadedSubcatergory: any;
- catergory: any;
-//  course = new course();
-//    dataArray =[];
+ catergory = '';
+ fileName = 'Choose File';
 
    contentForm: FormGroup;
 
-
-  constructor(private fb: FormBuilder, private subCatergoryService: SubcatergoryService, private catergoryService: CatergoryService, private courseService: CourseService) { }
+   user: any;
+   loggedIn = false;
+  constructor(private fb: FormBuilder,
+              private subCatergoryService: SubcatergoryService,
+              private catergoryService: CatergoryService,
+              private courseService: CourseService,
+              private http: HttpClient,
+              private auth: AuthService) { }
 
   ngOnInit() {
+
+    this.auth.authState.subscribe((user) => {
+      console.log(user);
+      localStorage.setItem('token',user.authToken);
+      this.user = user;
+      this.loggedIn = (user != null);
+    });
+
     this.subCatergoryService.getSubcatergory().subscribe(res =>{
       this.loadedSubcatergory = res;
       console.log(res);
@@ -43,49 +61,107 @@ export class AddcourseComponent implements OnInit {
       subCatergory: ['',Validators.required],
       type: ['',Validators.required],
       skillLevel: ['',Validators.required],
-      topic: new FormArray([]),
-      file : new FormArray([])
+      duration: ['', Validators.required],
+      topics: this.fb.array([this.fb.group({
+        topic:['', Validators.required],
+        videos : this.fb.array([new FormControl('',Validators.required)]),
+        files: this.fb.array([new FormControl('', Validators.required)])
+      })]),
+
     });
 
 
-    // this.userForm = new FormGroup({
-    //   subTopic: new FormArray([])
-    // });
-
-
-  // set contactlist to the form control containing contacts
-
-  //   this.course = new course();
-  //  this.dataArray.push(this.course);
   }
 
-  whenClicked = []
-  whenText = []
-  k:number = -1;
-
-text: string = 'upload';
- upClick(){
-  if(this.text === 'upload') {
-    this.text = 'uploaded'
+    get topic() {
+    return this.contentForm.get('topics') as FormArray;
   }
- }
+
+
+
+
+  addVideos(i){
+
+    const vid = this.topic.at(i).get('videos') as FormArray;
+    const file = this.topic.at(i).get('files') as FormArray;
+    vid.push(new FormControl('',Validators.required));
+    file.push(new FormControl('',Validators.required))
+
+  }
+
+  addFile(i){
+    const file = this.topic.at(i).get('files') as FormArray;
+    file.push(new FormControl('',Validators.required));
+  }
+  addTopic(){
+
+    this.topic.push(this.fb.group({
+      topic:['', Validators.required],
+      videos : new FormArray([new FormControl('',Validators.required)]),
+      files : new FormArray([new FormControl('',Validators.required)])
+    })
+    );
+    // ((this.topic.controls[0] as FormGroup).get('videos') as FormArray).push(new FormControl('HELLO',Validators.required));
+    console.log(this.contentForm.value);
+  }
   onDelete(i: number) {
-    (this.contentForm.get('topic') as FormArray).removeAt(i);
-    (this.contentForm.get('file') as FormArray).removeAt(i);
-  }
-  onAdd() {
+    (this.contentForm.get('topics') as FormArray).removeAt(i);
 
-    const control = new FormControl(null, Validators.required);
-   // const control2 = new FormControl(null, Validators.required);
-    (this.contentForm.get('topic') as FormArray).push(control);
-    //(this.contentForm.get('file') as FormArray).push(control2);
-    this.k++;
+  }
+  onDeleteFile(i: number){
+    (this.topic.at(i).get('files') as FormArray).removeAt(i);
+  }
+  onDeleteVideo(i: number){
+    (this.topic.at(i).get('videos') as FormArray).removeAt(i);
   }
 
-  upload(){
-    const control2 = new FormControl('id', Validators.required);
-    (this.contentForm.get('file') as FormArray).push(control2);
+  signInWithGoogle(): void {
+    console.log('signin');
+    this.auth.signIn(GoogleLoginProvider.PROVIDER_ID);
   }
+
+  signInWithFB(): void {
+    this.auth.signIn(FacebookLoginProvider.PROVIDER_ID);
+  }
+
+  signOut(): void {
+    this.auth.signOut();
+  }
+
+
+
+apiKey = 'AIzaSyARlqyYi6ockihl0Qi5MTYO3qjQVwmpfsI';
+ upClick(files){
+  // if(this.text === 'upload') {
+  //   this.text = 'uploaded'
+  // }
+
+  // let headers = {
+  //   headers: new HttpHeaders()
+  //     .set('authorization', 'Bearer ' + localStorage.getItem('token'))
+  // };
+  // let formData: FormData = new FormData();
+  // formData.append('file', files[0]);
+  // const url = 'https://www.googleapis.com/upload/youtube/v3/videos?key=' + this.apiKey + '&part=contentDetails,status';
+  // this.http.post(url, formData, headers).subscribe(res => {
+  //   console.log(res);
+  //   console.log(res['id']);
+ // const control2 = new FormControl(res['id'], Validators.required);
+  // (this.contentForm.get('videoId') as FormArray).push(control2);
+  // });
+
+ }
+submittest(){
+  console.log(this.contentForm.get('name').value);
+}
+
+
+
+
+  // upload(){
+  //   const control2 = new FormControl('id', Validators.required);
+  //   (this.contentForm.get('file') as FormArray).push(control2);
+  // }
 
 
 
@@ -137,20 +213,21 @@ text: string = 'upload';
 
 onSubmit(){
   //console.log(this.userForm.get('subTopic').value)
-console.log(this.contentForm.get('topic').value);
-console.log(this.contentForm.get('file').value)
-console.log(this.contentForm.get('type').value)
+
+//console.log(this.contentForm.get('type').value)
 console.log("course")
 console.log(this.contentForm.value);
-this.courseService.Addcourse(this.contentForm.value).subscribe(res => {
-  if(res.state){
-    console.log('add ok')
-    console.log(res);
-  }else{
-    console.log('add failed')
-  }
-  });
+// this.courseService.Addcourse(this.contentForm.value).subscribe(res => {
+//   if(res.state){
+//     console.log('add ok')
+//     console.log(res);
+//   }else{
+//     console.log('add failed')
+//   }
+//   });
 
 }
+
+
 
 }

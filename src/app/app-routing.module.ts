@@ -9,6 +9,7 @@ import { CourseComponent } from './course/course.component';
 import { MycoursesComponent } from './user/mycourses/mycourses.component';
 import { AdminComponent } from './admin/admin.component';
 import { EnrolledCourseComponent } from './course/enrolled-course/enrolled-course.component';
+import { AddContentComponent } from './contentprovider/addcourse/add-content/add-content.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -25,6 +26,7 @@ const routes: Routes = [
 
   {path: 'contentprovider', component: ContentproviderComponent},
   {path: 'addcourse', component: AddcourseComponent},
+  {path: 'addcourse/add-content', component: AddContentComponent},
   {path: 'account', component: AccountComponent},
   {path: 'mycourses', component: MycoursesComponent},
   {path: 'admin', component: AdminComponent}

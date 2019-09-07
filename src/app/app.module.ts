@@ -11,7 +11,9 @@ import { MatInputModule,
          MatExpansionModule,
          MatCheckboxModule,
          MatFormFieldModule,
-         MatAutocompleteModule
+         MatAutocompleteModule,
+         MatSelectModule,
+         MatIconModule
         } from '@angular/material';
 import { RatingModule } from 'ng-starrating';
 
@@ -38,9 +40,29 @@ import { SkillLevelPipe } from './pipes/skill-level.pipe';
 import { DurationPipe } from './pipes/duration.pipe';
 import { EnrolledCourseComponent } from './course/enrolled-course/enrolled-course.component';
 
+import { SocialLoginModule, AuthServiceConfig, LoginOpt } from "angularx-social-login";
+import { GoogleLoginProvider, FacebookLoginProvider } from "angularx-social-login";
+import { AddContentComponent } from './contentprovider/addcourse/add-content/add-content.component';
+
 export function tokenGetter() {
   return localStorage.getItem('id_token');
 }
+
+export function provideConfig() {
+  return config;
+}
+
+const googleLoginOptions: LoginOpt = {
+  scope: 'profile email https://www.googleapis.com/auth/youtube.force-ssl'
+};
+
+let config = new AuthServiceConfig([
+  {
+    id: GoogleLoginProvider.PROVIDER_ID,
+    provider: new GoogleLoginProvider("46660554208-qdtpdimir6hni2le5e8bkpdqff7dksei.apps.googleusercontent.com",googleLoginOptions)
+  }
+])
+
 
 
 @NgModule({
@@ -62,7 +84,8 @@ export function tokenGetter() {
     TypePipe,
     SkillLevelPipe,
     DurationPipe,
-    EnrolledCourseComponent
+    EnrolledCourseComponent,
+    AddContentComponent
   ],
   imports: [
     BrowserModule,
@@ -72,6 +95,7 @@ export function tokenGetter() {
     HttpClientModule,
     BrowserAnimationsModule,
     RatingModule,
+    SocialLoginModule,
     MatCheckboxModule,
     MatExpansionModule,
     MatToolbarModule,
@@ -80,6 +104,8 @@ export function tokenGetter() {
     MatInputModule,
     MatAutocompleteModule,
     MatFormFieldModule,
+    MatSelectModule,
+    MatIconModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter
@@ -87,7 +113,12 @@ export function tokenGetter() {
       }
     })
   ],
-  providers: [],
+  providers: [
+    {
+      provide: AuthServiceConfig,
+      useFactory: provideConfig
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

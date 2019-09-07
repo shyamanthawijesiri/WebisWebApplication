@@ -1,0 +1,48 @@
+<!-- <div class="container" style="margin-top: 57px;">
+  <div *ngFor="let z of zA; let i=index">
+
+    <div class="row">
+      <div class="col-6">
+          <div class="form-group">
+
+              <input type="text" class="form-control" placeholder="Sub Topic {{z+1}}"  >
+          </div>
+      </div>
+
+      <div class="col-3">
+          <div class="form-group ">
+
+              <input type="file"   >
+            </div>
+      </div>
+
+      <div class="col-3">
+          <div class="form-group ">
+
+              <input type="file"   >
+            </div>
+            <button  class="btn btn-outline-danger" (click)="remove(i)">remove</button>
+      </div>
+
+
+
+    </div>
+  </div>
+  <div class="row">
+      <button  class="btn btn-outline-success" (click)="addField();zA[z]=z" >Add Topic</button>
+  </div>
+</div> -->
+<div class="container" style="margin-top: 100px;">
+
+    <div formArrayName="subtasks">
+        <div *ngFor="let subtask of subtaskControl.controls; let i=index">
+            <div [formGroupName]="i">
+                <input type="text" placeholder="Enter Link" formControlName="subtask">
+            </div>
+            <div>
+                <a class="btn btn-danger btn-sm" (click)="removeLink(i)">REMOVE</a>
+                <a class="btn btn-success btn-sm" (click)="addLink()">Add</a>
+            </div>
+        </div>
+    </div>
+</div>

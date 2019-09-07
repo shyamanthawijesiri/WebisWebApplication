@@ -1,236 +1,244 @@
-<form style="margin-top: 100px;" [formGroup]="contentForm"  >
-  <div class="container">
+<div style="width: 90%; margin: auto;">
 
-  <div class="row">
-
-    <div class="form-group col-sm">
-      <label for="courseTitle">Course Title</label>
-      <input type="text" class="form-control" id="courseTitle" formControlName="name" >
-    </div>
-  </div>
+  <form style="margin-top: 100px;" [formGroup]="contentForm" (ngSubmit)="onSubmit()" >
 
 
-  <div class="row">
-    <div class="form-group col-sm">
-      <label for="description">Description</label>
-      <textarea class="form-control" id="description" rows="4" formControlName="description"></textarea>
-    </div>
-  </div>
+      <div class="row">
+        <div class="col-12">
+          <h6>Course Title</h6>
+          <mat-form-field >
+            <input matInput placeholder="title"  formControlName="name">
+          </mat-form-field>
 
-  <div class="row">
-    <div class="form-group col-sm-6">
-      <h6>Catergory</h6>
-        <div class="input-group" style="margin-bottom:20px;" >
+        </div>
+        <!-- <div class="form-group col-sm">
+          <label for="courseTitle">Course Title</label>
+          <input type="text" class="form-control" id="courseTitle" formControlName="name" >
+        </div> -->
 
-            <select class="custom-select"[(ngModel)]="catergory" name="subCatergory" formControlName="catergory">
+      </div>
 
-              <option *ngFor="let catergory of loadedCatergory; let i=index;" [ngValue]="catergory.name"   >{{catergory.name}}</option>
 
+      <div class="row">
+        <div class="col-12">
+          <h6>Course Description</h6>
+          <mat-form-field >
+            <textarea matInput placeholder="description" formControlName="description"></textarea>
+          </mat-form-field>
+        </div>
+        <!-- <div class="form-group col-sm">
+          <label for="description">Description</label>
+          <textarea class="form-control" id="description" rows="4" formControlName="description"></textarea>
+        </div> -->
+      </div>
+
+      <div class="row">
+        <div class="form-group col-sm-6">
+          <h6>Catergory</h6>
+            <!-- <div class="input-group" style="margin-bottom:20px;" >
+
+                <select class="custom-select"[(ngModel)]="catergory" name="subCatergory" formControlName="catergory">
+
+                  <option *ngFor="let catergory of loadedCatergory; let i=index;" [ngValue]="catergory.name"   >{{catergory.name}}</option>
+
+                </select>
+              </div> -->
+              <mat-form-field  style="margin-bottom:20px;">
+                <mat-select [(value)]="catergory" name="subCatergory" formControlName="catergory" placeholder="select catergory">
+                  <mat-option *ngFor="let catergory of loadedCatergory; let i=index;" [value]="catergory.name">{{catergory.name}}</mat-option>
+
+                </mat-select>
+              </mat-form-field>
+
+        </div>
+        <div class="form-group col-sm-6">
+            <h6>Sub-Catergory</h6>
+            <!-- <div class="input-group" style="margin-bottom:20px; " >
+
+                <select class="custom-select" formControlName="subCatergory" >
+
+                  <option *ngFor="let subcatergory of loadedSubcatergory | subcateroies:catergory   let i=index;" [ngValue]="subcatergory.name"  >{{subcatergory.name}}</option>
+
+                </select>
+              </div> -->
+              <mat-form-field style="margin-bottom:20px;">
+                <mat-select formControlName="subCatergory" placeholder="select sub-catergory">
+                  <mat-option *ngFor="let subcatergory of loadedSubcatergory | subcateroies:catergory; let i=index;" value="subcatergory.name"  >{{subcatergory.name}}</mat-option>
+
+                </mat-select>
+              </mat-form-field>
+          </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-sm-4">
+          <!-- type -->
+          <h6>Course Type</h6>
+          <!-- <div class="input-group" style="margin-bottom:20px;" >
+            <select class="custom-select" id="inputGroupSelect04"  formControlName="type">
+              <option  >paid</option>
+              <option  >free</option>
             </select>
-      </div>
-    </div>
-    <div class="form-group col-sm-6">
-        <h6>Sub-Catergory</h6>
-        <div class="input-group" style="margin-bottom:20px; " >
+          </div> -->
+          <mat-form-field>
+            <mat-select placeholder="Select" formControlName="type">
+              <mat-option value="paid">paid</mat-option>
+              <mat-option value="free">free</mat-option>
 
-            <select class="custom-select" formControlName="subCatergory" >
-
-              <option *ngFor="let subcatergory of loadedSubcatergory | subcateroies:catergory   let i=index;" [ngValue]="subcatergory.name"  >{{subcatergory.name}}</option>
-
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="form-group col-sm-4">
+          <!-- skill level -->
+          <h6>Skill Level</h6>
+          <mat-form-field>
+            <mat-select placeholder="Select" formControlName="skillLevel">
+              <mat-option value="beginner">beginner</mat-option>
+              <mat-option value="intermediate">intermediate</mat-option>
+              <mat-option value="advance">advance</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <!-- <div class="input-group" style="margin-bottom:20px;"  >
+            <select class="custom-select" id="inputGroupSelect04" formControlName="skillLevel" >
+              <option  >beginner</option>
+              <option  >intermediate</option>
+              <option  >advance</option>
             </select>
+          </div> -->
+        </div>
+        <div class="form-group col-sm-4">
+          <!-- duration -->
+          <h6>Duration</h6>
+          <!-- <div class="input-group" style="margin-bottom:20px;" >
+            <select class="custom-select" id="inputGroupSelect04" >
+              <option  >lessmonth</option>
+              <option  >1-3month</option>
+              <option  >3+month</option>
+            </select>
+          </div> -->
+          <mat-form-field>
+            <mat-select placeholder="Select" formControlName="duration">
+              <mat-option value="lessmonth">lessmonth</mat-option>
+              <mat-option value="1-3month">1-3month</mat-option>
+              <mat-option value="3+month">3+month</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
       </div>
-      </div>
-  </div>
-  <div class="row">
-    <div class="form-group col-sm-4">
-      <!-- type -->
-      <h6>Course Type</h6>
-      <!-- <div class="input-group" style="margin-bottom:20px;" >
-        <select class="custom-select" id="inputGroupSelect04"  formControlName="type">
-          <option  >paid</option>
-          <option  >free</option>
-        </select>
+
+      <!-- <div class="row">
+        <div class="col-sm">
+           <button type="submit" class="btn btn-outline-primary" style="margin-top: 15px; margin-bottom: 30px;">Save</button>
+          </div>
       </div> -->
-      <mat-form-field>
-        <mat-select placeholder="Select" formControlName="type">
-          <mat-option value="paid">paid</mat-option>
-          <mat-option value="free">free</mat-option>
 
-        </mat-select>
-      </mat-form-field>
+
+
+      <div class="row" style="margin-bottom: 50px;">
+        <div class="col-12">
+          <h4 class="text-center">Course content</h4>
+        </div>
     </div>
-    <div class="form-group col-sm-4">
-      <!-- skill level -->
-      <h6>Skill Level</h6>
-      <mat-form-field>
-        <mat-select placeholder="Select" formControlName="skillLevel">
-          <mat-option value="beginner">beginner</mat-option>
-          <mat-option value="intermediate">intermediate</mat-option>
-          <mat-option value="advance">advance</mat-option>
-        </mat-select>
-      </mat-form-field>
-      <!-- <div class="input-group" style="margin-bottom:20px;"  >
-        <select class="custom-select" id="inputGroupSelect04" formControlName="skillLevel" >
-          <option  >beginner</option>
-          <option  >intermediate</option>
-          <option  >advance</option>
-        </select>
-      </div> -->
-    </div>
-    <div class="form-group col-sm-4">
-      <!-- duration -->
-      <h6>Duration</h6>
-      <!-- <div class="input-group" style="margin-bottom:20px;" >
-        <select class="custom-select" id="inputGroupSelect04" >
-          <option  >lessmonth</option>
-          <option  >1-3month</option>
-          <option  >3+month</option>
-        </select>
-      </div> -->
-      <mat-form-field>
-        <mat-select placeholder="Select" formControlName="duration">
-          <mat-option value="lessmonth">lessmonth</mat-option>
-          <mat-option value="1-3month">1-3month</mat-option>
-          <mat-option value="3+month">3+month</mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
-  </div>
-
-  <!-- <div class="row">
-    <div class="col-sm">
-       <button type="submit" class="btn btn-outline-primary" style="margin-top: 15px; margin-bottom: 30px;">Save</button>
+      <div class="row">
+        <div class="col-md-4">
+          <h6>Topics</h6>
+        </div>
+      <div class="col-md-4">
+          <h6>Video</h6>
+        </div>
+      <div class="col-md-4">
+          <h6>Files</h6>
+        </div>
       </div>
-  </div> -->
-</div>
-
-  <div class="container">
-    <div class="row" style="margin-bottom: 50px;">
-      <div class="col-12">
-        <h4 class="text-center">Course content</h4>
-      </div>
-  </div>
-    <div class="row">
-      <div class="col-md-6">
-        <h6>Sub Topic</h6>
-      </div>
-    <div class="col-md-2">
-        <h6>Add video</h6>
-      </div>
-    <div class="col-md-2">
-        <h6>Add files</h6>
-      </div>
-    </div>
 
 
 
-    <div class="row">
-      <div class="col-12">
 
-        <div formArrayName="topics" class="form-group">
-          <div class="form-group" *ngFor="let mc of contentForm['controls'].topics['controls']; let i = index">
-            <div class="row">
+
+
+        <div formArrayName="topics" >
+          <div class="form-group" *ngFor="let topic of contentForm['controls'].topics['controls']; let i = index">
+
 
                   <div [formGroupName]="i">
-                    <div class="row" >
+                    <div class="row" style="width: 100%; ">
 
-                      <div class="col-md-6">
-                          <input placeholder='Sub Topic {{i+1}}' formControlName="subtopic" class="form-control">
+                      <div class="col-md-4">
+                        <div class="form-group">
 
+                       <input placeholder='Topic {{i+1}}' formControlName="topic" class="form-control">
+                        </div>
+                          <button  class="btn btn-outline-danger" (click)="onDelete(i)" >Remove</button>
 
                         </div>
-                        <div class="col-md-4"  class="form-group" formArrayName="videos">
+                        <div class="col-md-4"  class="form-group" formArrayName="videos" style="width: 33%"  >
 
                               <!-- <button  class="btn btn-outline-success" (click)="addVideos()" >Add Video</button> -->
-                              <div class="form-group " *ngFor="let kc of mc['controls'].videos['controls'];let m=index;" >
+                              <div  *ngFor="let video of topic['controls'].videos['controls'];let m=index;" >
 
-                                <input placeholder='Sub Topic {{m+1}}'  class="form-control" [formControlName]="m" >
+                                <!-- <input placeholder='Sub Topic {{m+1}}'  class="form-control" [formControlName]="m" > -->
+
+                                <div  style="margin-bottom: 10px;">
+                                      <div class="input-group-append">
+                                      <input type="file" style="width: 70%;">
+                                      <button mat-icon-button type="button" (click)="onDeleteVideo(i)"><mat-icon>delete</mat-icon></button>
+                                      <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon02">Upload</button>
+                                    </div>
+                                  </div>
                               </div>
-                                <button class="btn btn-success" (click)="addVideos(i)">add</button>
+                                <button  class="btn btn-outline-success" type="button" (click)="addVideos(i)">Add Video</button>
+
                       </div>
 
-                    <div class="col-md-2">
+                    <div class="col-md-4" class="form-group" formArrayName="files"  style="width: 33%"  >
+                        <div  *ngFor="let file of topic['controls'].files['controls'];let j=index;" >
+                            <div  style="margin-bottom: 10px;">
 
-                        <!-- <button  [disabled]="whenClicked[i]" (click)="whenClicked[i]=true;whenClicked[i+1]=false;whenText[i]='uploaded';upClick(f.files)">upload</button> -->
-                        <button  class="btn btn-outline-danger" (click)="onDelete(i)" >Remove</button>
+                                <div class="input-group-append">
+                                    <input type="file" style="width: 70%;">
+                                    <button mat-icon-button type="button" (click)="onDeleteFile(i)"><mat-icon>delete</mat-icon></button>
+                                    <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon02">Upload</button>
+                                  </div>
+                            </div>
+
+                        </div>
+                        <button  class="btn btn-outline-success" type="button" (click)="addFile(i)">Add File</button>
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-
-        <button  class="btn btn-outline-success" (click)="addTopic()" >Add Topic</button>
-        <button class="btn btn-outline-primary" (click)="onSubmit()" style="margin-left: 15px;">Save</button>
-
-        <!-- <div *ngFor="let y of z">
-
-        <div class="row">
-
-          <div class="form-group col-sm-6">
-
-              <input type="text" class="form-control" placeholder="Sub Topic {{y+1}}"  >
-            </div>
-          <div class="form-group col-sm-3">
-
-              <input type="file"   >
-            </div>
-        </div>
-        </div>
-
-      </div> -->
-      <!-- <div class="col-md-2">
-        <div formArrayName="file" class="form-group">
-          <div class="form-group" *ngFor="let mcq of contentForm.get('file').controls; let i = index">
-              <input [formControlName]="i" class="form-control">
-
-
-
-            </div>
 
           </div>
-      </div> -->
-      <!-- <div class="col-md-2">
-          <div formArrayName="topic" >
-              <div class="form-group" *ngFor="let mcq of contentForm.get('topic').controls; let i = index">
-                  <button class="btn btn-outline-danger" (click)="onDelete(i)"> Remove </button>
-                </div>
-                </div>
-            </div> -->
+        </div>
 
 
+          <div class="row">
+
+            <div class="btn-group" role="group" aria-label="Basic example">
+                <button type="button" class="btn btn-outline-success" (click)="addTopic()" >Add Topic</button>
+                <button type="submit" class = "btn btn-outline-primary"  style="margin-left: 15px; width: 100px;">Save</button>
+
+              </div>
+          </div>
+
+
+
+
+      </form>
+
+
+
+
+    <div *ngIf="user">
+        <img src="{{ user.photoUrl }}">
+        <div>
+          <h4>{{ user.name }}</h4>
+          <p>{{ user.email }}</p>
+          <p>{{ user.credentials }}</p>
+        </div>
       </div>
-
-      <button  class="btn btn-outline-success"  (click)="whenClicked[0] = false">finished</button>
-      <!-- <button  class="btn btn-outline-success" (click)="onAdd();whenClicked[k]=true;whenText[k]='upload'" >Add Topic</button> -->
-
-
-    </div>
-  </div>
-  </form>
-    <!-- <div formArrayName="topic" >
-      <div class="form-group" *ngFor="let mcq of contentForm.get('topic').controls; let i = index">
-        <input placeholder='mcq answer {{i+1}}' [formControlName]="i">
-
-          <button matSuffix mat-icon-button type="button" (click)="onDeleteMcq(i)">
-            delete
-          </button>
-
-      </div>
-      <button mat-stroked-button style="width: 100%" type="button" (click)="onAddMcq()">+ Add Mcq</button>
-      <span class="btn btn-outline-primary" (click)="onSubmit()" style="margin-left: 15px;">Save</span>
-    </div> -->
+      <button (click)="signInWithGoogle()">Sign in</button>
+      <button (click)="signOut()">Logout</button>
 
 
 
-<div *ngIf="user">
-    <img src="{{ user.photoUrl }}">
-    <div>
-      <h4>{{ user.name }}</h4>
-      <p>{{ user.email }}</p>
-      <p>{{ user.credentials }}</p>
-    </div>
-  </div>
-  <button (click)="signInWithGoogle()">Sign in</button>
-  <button (click)="signOut()">Logout</button>
+</div>
 
